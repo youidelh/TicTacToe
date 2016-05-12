@@ -6,7 +6,7 @@ import java.util.List;
 public class GameState {
 	
 
-	private static final int numberToWin = 3;
+	private static final int NUMBER_TO_WIN = 3;
 	private List<int[]> rowGridScore;
 	private List<int[]> colsGridScore;
 	private List<int[]> diagGridScore;
@@ -48,7 +48,7 @@ public class GameState {
 	 * @return
 	 */
 	public boolean checkRow(int row, int grid){
-		if(++rowGridScore.get(grid)[row] == numberToWin){
+		if(++rowGridScore.get(grid)[row] == NUMBER_TO_WIN){
 			return true;
 		}
 		return false;
@@ -61,10 +61,10 @@ public class GameState {
 	 * @return
 	 */
 	public boolean checkColumn(int row, int column, int grid){
-		if(++colsAllGrid[row][column] == numberToWin){
+		if(++colsAllGrid[row][column] == NUMBER_TO_WIN){
 			return true;
 		}
-		if(++colsGridScore.get(grid)[column] == numberToWin){
+		if(++colsGridScore.get(grid)[column] == NUMBER_TO_WIN){
 			return true;
 		}
 		return false;
@@ -77,11 +77,11 @@ public class GameState {
 	 * @return
 	 */
 	public boolean checkDiagonal(int row, int column, int grid){
-		if(row == column && ++diagGridScore.get(grid)[0] == numberToWin){
+		if(row == column && ++diagGridScore.get(grid)[0] == NUMBER_TO_WIN){
 			return true;
 		}
-		for (int i = 0; i < numberToWin; i++) {
-			if(row == i && column == (numberToWin - 1 - i) && ++diagGridScore.get(grid)[1] == numberToWin){
+		for (int i = 0; i < NUMBER_TO_WIN; i++) {
+			if(row == i && column == (NUMBER_TO_WIN - 1 - i) && ++diagGridScore.get(grid)[1] == NUMBER_TO_WIN){
 				return true;
 			}
 		}
@@ -96,7 +96,7 @@ public class GameState {
 	private boolean incrementAllCells(int[][] cell){
 		for (int i = 0; i < cell.length; i++) {
 			for (int j = 0; j < cell[i].length; j++) {
-				if(++cell[i][j] == numberToWin){
+				if(++cell[i][j] == NUMBER_TO_WIN){
 					return true;
 				}
 			}
@@ -133,7 +133,7 @@ public class GameState {
 			}
 		}else if(grid == 2 || grid == 0){
 			int gridToIncrement = grid == 2 ? 1: 0;
-			if(++diagOfAllGrids.get(gridToIncrement)[row][column] == numberToWin){
+			if(++diagOfAllGrids.get(gridToIncrement)[row][column] == NUMBER_TO_WIN){
 				return true;
 			}
 			if(gridToIncrement == 0){
@@ -154,8 +154,8 @@ public class GameState {
 		int column1 = column == token ? 0 : 2;
 		int rowCol = token == 0 ? 0 : 2;
 		for (int i = 0; i < diagOfAllGrids.size(); i++) {
-			if(++diagOfAllGrids.get(i)[rowCol][rowCol] == numberToWin 
-					|| ++diagOfAllGrids.get(i)[row1][column1] == numberToWin)
+			if(++diagOfAllGrids.get(i)[rowCol][rowCol] == NUMBER_TO_WIN 
+					|| ++diagOfAllGrids.get(i)[row1][column1] == NUMBER_TO_WIN)
 				return true;
 		}
 		return false;
@@ -169,7 +169,7 @@ public class GameState {
 	public boolean diagStartingFromMiddle(int row, int column){
 		if (column + row == 1 && (column == 0 || row == 0)){
 			return helpForDiagStartingFromMiddle(row, column, 0);
-		}else if (column + row == numberToWin && (column == 2 || row == 2)){
+		}else if (column + row == NUMBER_TO_WIN && (column == 2 || row == 2)){
 			return helpForDiagStartingFromMiddle(row, column, 1);
 		}
 		return false;
@@ -200,18 +200,18 @@ public class GameState {
 	public boolean helpForDiagOfSpecifiedRows(int grid, int row, int column, int token){
 		int mainRow = Math.abs(row + token);
 		int mainColumn = Math.abs(column + token);
-		if((mainRow < numberToWin && mainColumn < numberToWin) 
-				&& ++diagOfAllGrids.get(grid)[mainRow][mainColumn] == numberToWin){
+		if((mainRow < NUMBER_TO_WIN && mainColumn < NUMBER_TO_WIN) 
+				&& ++diagOfAllGrids.get(grid)[mainRow][mainColumn] == NUMBER_TO_WIN){
 			return true;
 		}
-		if( ( mainColumn < numberToWin && row < numberToWin 
+		if( ( mainColumn < NUMBER_TO_WIN && row < NUMBER_TO_WIN 
 				&& row != mainRow) 
-				&& ++diagOfAllGrids.get(grid)[row][mainColumn] == numberToWin){
+				&& ++diagOfAllGrids.get(grid)[row][mainColumn] == NUMBER_TO_WIN){
 			return true;
 		}
-		if( (mainRow < numberToWin && column < numberToWin 
+		if( (mainRow < NUMBER_TO_WIN && column < NUMBER_TO_WIN 
 				&& column != mainColumn) 
-				&& ++diagOfAllGrids.get(grid)[mainRow][column] == numberToWin){
+				&& ++diagOfAllGrids.get(grid)[mainRow][column] == NUMBER_TO_WIN){
 			return true;
 		}
 		return false;
