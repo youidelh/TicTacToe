@@ -3,13 +3,13 @@ package de.htwg.tictactoe.model;
 public class Game {
 	
 	Grid[] grids;
-	private int SIZE = 3;
+	private int size = 3;
 	
 	/**
 	 * constructor
 	 */
 	public Game() {
-		grids = new Grid[SIZE];
+		grids = new Grid[size];
 		for (int i = 0; i < grids.length; i++) {
 			grids[i] = new Grid();
 		}
@@ -29,7 +29,7 @@ public class Game {
 	  * @param grid
 	  * @return
 	  */
-	public boolean CellIsSet(int row, int column, int grid){
+	public boolean cellIsSet(int row, int column, int grid){
 		return grids[grid].cellIsSet(row, column);
 	}
 	
@@ -42,6 +42,7 @@ public class Game {
 		}
 	}
 	
+	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < grids.length; i++) {

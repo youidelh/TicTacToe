@@ -23,18 +23,16 @@ public class TextUI implements IObserver {
 
 	public boolean processInputLine(String line) {
 		boolean continu = true;
-		if (line.equalsIgnoreCase("q")) {
+		if ("q".equalsIgnoreCase(line)) {
 			continu = false;
 		}
-		if (line.matches("^[a-zA-Z0-9_-]*$")) {
-			if(line.contains("-")){
-				String[] players = line.split("-");
-				if(players.length == 2 ){
-					controller.setPlayers(players[0], players[1]);
-				}
+		if (line.matches("^[a-zA-Z0-9_-]*$") && line.contains("-")){
+			String[] players = line.split("-");
+			if(players.length == 2 ){
+				controller.setPlayers(players[0], players[1]);
 			}
 		}
-		if (line.equalsIgnoreCase("r")) {
+		if ("r".equalsIgnoreCase(line)) {
 			controller.reset();
 		}
 		

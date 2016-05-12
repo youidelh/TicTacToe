@@ -10,8 +10,8 @@ public class Controller extends Observable {
 	private String statusMessage = Messages.WELCOME_MESSAGE;
 	private Game game;
 	private Player[] players = new Player[2];
-	public boolean myTurn = true;
-	public boolean[] won = new boolean[2];
+	private boolean myTurn = true;
+	private boolean[] won = new boolean[2];
 
 	/**
 	 * Constructor
@@ -76,7 +76,7 @@ public class Controller extends Observable {
 	 */
 	public void tryToMove(int playerIndex, int row, int column, int grid){
 		if(row < 3 && column < 3 && grid < 3){
-			if(game.CellIsSet(row, column, grid)){
+			if(game.cellIsSet(row, column, grid)){
 				myTurn = !myTurn;
 				setStatusMessage(Messages.CELL_IS_SET);
 				notifyObservers();

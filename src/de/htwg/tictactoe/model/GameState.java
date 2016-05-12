@@ -1,15 +1,16 @@
 package de.htwg.tictactoe.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameState {
 	
 
 	private final int NUMBER_TO_WIN = 3;
-	private ArrayList<int[]> rowGridScore;
-	private ArrayList<int[]> colsGridScore;
-	private ArrayList<int[]> diagGridScore;
-	public ArrayList<int[][]> diagOfAllGrids;
+	private List<int[]> rowGridScore;
+	private List<int[]> colsGridScore;
+	private List<int[]> diagGridScore;
+	public List<int[][]> diagOfAllGrids;
 	private int[][] colsAllGrid;
 	
 	/**
@@ -46,7 +47,7 @@ public class GameState {
 	 * @param grid placement of the grid
 	 * @return
 	 */
-	public boolean checkRow(int row, int column, int grid){
+	public boolean checkRow(int row, int grid){
 		if(++rowGridScore.get(grid)[row] == NUMBER_TO_WIN){
 			return true;
 		}
@@ -76,16 +77,12 @@ public class GameState {
 	 * @return
 	 */
 	public boolean checkDiagonal(int row, int column, int grid){
-		if(row == column){
-			if(++diagGridScore.get(grid)[0] == NUMBER_TO_WIN){
-				return true;
-			}
+		if(row == column && ++diagGridScore.get(grid)[0] == NUMBER_TO_WIN){
+			return true;
 		}
 		for (int i = 0; i < NUMBER_TO_WIN; i++) {
-			if(row == i && column == (NUMBER_TO_WIN - 1 - i)){
-				if(++diagGridScore.get(grid)[1] == NUMBER_TO_WIN){
-					return true;
-				}
+			if(row == i && column == (NUMBER_TO_WIN - 1 - i) && ++diagGridScore.get(grid)[1] == NUMBER_TO_WIN){
+				return true;
 			}
 		}
 		return false;
@@ -106,6 +103,20 @@ public class GameState {
 		}
 		return false;
 	}
+	
+	/**
+	 * 
+	 * refractor of checkDiagOfAllGrids method
+	 */
+	private boolean helpForCheckDiagOfAllGrids(){
+		for (int k = 0; k < diagOfAllGrids.size(); k++) {
+			boolean value = incrementAllCells(diagOfAllGrids.get(k));
+			if(value){
+				return true;
+			}
+		}
+		return false;
+	}
 	/**
 	 * increments and checks diagonal of 3D grid
 	 * @param row
@@ -116,47 +127,39 @@ public class GameState {
 	public boolean checkDiagOfAllGrids(int row, int column, int grid) {
 		if(grid == 1){
 			if(row == 1 && column == 1){
-				for (int k = 0; k < diagOfAllGrids.size(); k++) {
-					boolean value = incrementAllCells(diagOfAllGrids.get(k));
-					if(value){
-						return true;
-					}
-				}
+				return helpForCheckDiagOfAllGrids();
 			}else {
 				return diagStartingFromMiddle(row, column);
 			}
 		}else if(grid == 2 || grid == 0){
-			if(grid == 2){
-				grid = 1;
-			}
-			if(++diagOfAllGrids.get(grid)[row][column] == NUMBER_TO_WIN){
+			int gridToIncrement = grid == 2 ? 1: 0;
+			if(++diagOfAllGrids.get(gridToIncrement)[row][column] == NUMBER_TO_WIN){
 				return true;
 			}
-			if(grid == 0){
-				return helpForDiagOfSpecifiedRows(grid + 1, row, column);
-			}else if(grid == 1){
-				return helpForDiagOfSpecifiedRows(grid - 1, row, column);
+			if(gridToIncrement == 0){
+				return diagOfSpecifiedRows(gridToIncrement + 1, row, column);
+			}else if(gridToIncrement == 1){
+				return diagOfSpecifiedRows(gridToIncrement - 1, row, column);
 			}
 		}
 		return false;
 	}
 	
+	
 	/**
-	 * Help method 
-	 * @param grid
-	 * @param row
-	 * @param column
-	 * @return
+	 * help for diagStartingFromMiddle
 	 */
-	public boolean helpForDiagOfSpecifiedRows(int grid, int row, int column){
-		if(row == 2 || column == 2){
-			return diagOfSpecifiedRows(grid, row, column, -2);
-		}else if(row == 0 || column == 0){
-			return diagOfSpecifiedRows(grid, row, column, 2);
+	private boolean helpForDiagStartingFromMiddle(int row, int column, int token){
+		int row1 = row == token ? 0 : 2;
+		int column1 = column == token ? 0 : 2;
+		int rowCol = token == 0 ? 0 : 2;
+		for (int i = 0; i < diagOfAllGrids.size(); i++) {
+			if(++diagOfAllGrids.get(i)[rowCol][rowCol] == NUMBER_TO_WIN 
+					|| ++diagOfAllGrids.get(i)[row1][column1] == NUMBER_TO_WIN)
+				return true;
 		}
 		return false;
 	}
-	
 	/**
 	 * increments and checks the 3d grid diagonal starting from the middle normal grid
 	 * @param row
@@ -165,21 +168,24 @@ public class GameState {
 	 */ 
 	public boolean diagStartingFromMiddle(int row, int column){
 		if (column + row == 1 && (column == 0 || row == 0)){
-			int row1 = row == 0 ? 0 : 2;
-			int column1 = column == 0 ? 0 : 2;
-			for (int i = 0; i < diagOfAllGrids.size(); i++) {
-				if(++diagOfAllGrids.get(i)[0][0] == NUMBER_TO_WIN 
-						|| ++diagOfAllGrids.get(i)[row1][column1] == NUMBER_TO_WIN)
-					return true;
-			}
+			return helpForDiagStartingFromMiddle(row, column, 0);
 		}else if (column + row == NUMBER_TO_WIN && (column == 2 || row == 2)){
-			int row1 = row == 1 ? 0 : 2;
-			int column1 = column == 1 ? 0 : 2;
-			for (int i = 0; i < diagOfAllGrids.size(); i++) {
-				if(++diagOfAllGrids.get(i)[2][2] == NUMBER_TO_WIN 
-						|| ++diagOfAllGrids.get(i)[row1][column1] == NUMBER_TO_WIN)
-					return true;
-			}
+			return helpForDiagStartingFromMiddle(row, column, 1);
+		}
+		return false;
+	}
+	/**
+	 * Help method 
+	 * @param grid
+	 * @param row
+	 * @param column
+	 * @return
+	 */
+	public boolean diagOfSpecifiedRows(int grid, int row, int column){
+		if(row == 2 || column == 2){
+			return helpForDiagOfSpecifiedRows(grid, row, column, -2);
+		}else if(row == 0 || column == 0){
+			return helpForDiagOfSpecifiedRows(grid, row, column, 2);
 		}
 		return false;
 	}
@@ -191,11 +197,11 @@ public class GameState {
 	 * @param token
 	 * @return
 	 */
-	public boolean diagOfSpecifiedRows(int grid, int row, int column, int token){
+	public boolean helpForDiagOfSpecifiedRows(int grid, int row, int column, int token){
 		int mainRow = Math.abs(row + token);
 		int mainColumn = Math.abs(column + token);
-		if( (mainRow < NUMBER_TO_WIN && mainColumn < NUMBER_TO_WIN) 
-			&& ++diagOfAllGrids.get(grid)[mainRow][mainColumn] == NUMBER_TO_WIN){
+		if((mainRow < NUMBER_TO_WIN && mainColumn < NUMBER_TO_WIN) 
+				&& ++diagOfAllGrids.get(grid)[mainRow][mainColumn] == NUMBER_TO_WIN){
 			return true;
 		}
 		if( ( mainColumn < NUMBER_TO_WIN && row < NUMBER_TO_WIN 
@@ -218,7 +224,7 @@ public class GameState {
 	 * @return  
 	 */
 	public boolean checkForWin(int row, int column, int grid){
-		if(checkRow(row, column, grid) 
+		if(checkRow(row, grid) 
 				|| checkColumn(row, column, grid) 
 				|| checkDiagonal(row, column, grid)
 				|| checkDiagOfAllGrids(row, column, grid)){
@@ -226,30 +232,4 @@ public class GameState {
 		}
 		return false; 
 	}
-	/*public static void main(String[] args) {
-		GameState state = new GameState(); 
-
-		state.checkDiagOfAllGrids(1, 0, 0);
-		state.checkDiagOfAllGrids(1, 1, 1);
-		state.diagOfSpecifiedRows(1, 1, 0, 2);  
-		//state.diagOfSpecifiedRows(2, 1, 0, 2); 
-		//state.diagOfSpecifiedRows(2, 1, 0, 2); 
-		//state.diagStartingFromMiddle(1, 1); 
-		//state.diagStartingFromMiddle(1, 0); 
-		/*
-		state.checkDiagOfAllGrids(1, 1, 1);
-		state.checkDiagOfAllGrids(0, 1, 1);
-		state.checkDiagOfAllGrids(0, 0, 1);  
-		state.checkDiagOfAllGrids(1, 2, 0); 
-		state.checkDiagOfAllGrids(1, 2, 2);*/
-		/*for (int k = 0; k < 2; k++) {
-			for (int i = 0; i < state.diagOfAllGrids.get(k).length; i++) {
-				for (int j = 0; j < state.diagOfAllGrids.get(k)[i].length; j++) {
-					System.out.print(state.diagOfAllGrids.get(k)[i][j]+" ");
-				}
-				System.out.println();
-			}
-			System.out.println();
-		}
-	}*/
 }
