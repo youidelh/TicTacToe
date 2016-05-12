@@ -31,8 +31,8 @@ public class TextUITest {
         tui1.processInputLine("player1-player2-player3");
         //reset
         tui1.processInputLine("r");
-        assertFalse(controller.won[0]);
-        assertFalse(controller.won[1]);
+		assertFalse(controller.getWin(0));
+		assertFalse(controller.getWin(1));
         //moves
         tui1.processInputLine("000");
         assertEquals("X", controller.getGame()

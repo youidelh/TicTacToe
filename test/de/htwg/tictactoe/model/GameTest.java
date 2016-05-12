@@ -33,6 +33,6 @@ public class GameTest {
 	@Test
 	public void testCellIsSet(){
 		game.getGrids()[0].setCell(0, 0, "X");
-		assertTrue(game.CellIsSet(0, 0, 0));
+		assertTrue(game.cellIsSet(0, 0, 0));
 	}
 }

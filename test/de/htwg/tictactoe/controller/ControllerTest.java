@@ -42,8 +42,9 @@ public class ControllerTest {
 		controller.reset();
 		controller.setPlayers("player1", "player2");
 		controller.reset();
-		assertFalse(controller.won[0]);
-		assertFalse(controller.won[1]);
+		assertFalse(controller.getWin(0));
+		assertFalse(controller.getWin(1));
+		assertFalse(controller.getWin(3));
 	}
 	
 		
@@ -52,9 +53,9 @@ public class ControllerTest {
 		controller.setPlayers("player1", "player2");
 
 		controller.tryToMove(0, 0, 0, 0);
-		assertTrue(controller.myTurn);
+		assertTrue(controller.getTurn());
 		controller.tryToMove(0, 0, 0, 0);
-		assertFalse(controller.myTurn);
+		assertFalse(controller.getTurn());
 		controller.tryToMove(0, 0, 0, 0);
 
 		controller.tryToMove(0, 3, 0, 0);

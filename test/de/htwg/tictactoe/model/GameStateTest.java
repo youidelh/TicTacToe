@@ -19,9 +19,9 @@ public class GameStateTest {
 	
 	@Test
 	public void testCheckRow(){
-		assertFalse(state.checkRow(0, 0, 0));
-		assertFalse(state.checkRow(0, 1, 0));
-		assertTrue(state.checkRow(0, 2, 0));
+		assertFalse(state.checkRow(0, 0));
+		assertFalse(state.checkRow(0, 0));
+		assertTrue(state.checkRow(0, 0));
 		
 	}
 	
@@ -105,24 +105,24 @@ public class GameStateTest {
 	}
 	@Test 
 	public void testHelpForDiagOfSpecifiedRows(){
-		assertFalse(state.helpForDiagOfSpecifiedRows(0, 0, 1));
-		assertFalse(state.helpForDiagOfSpecifiedRows(0, 1, 0));
+		assertFalse(state.diagOfSpecifiedRows(0, 0, 1));
+		assertFalse(state.diagOfSpecifiedRows(0, 1, 0));
 	}
 	@Test 
 	public void testDiagOfSpecifiedRows(){
-		assertFalse(state.diagOfSpecifiedRows(1, 1, 1, 1));
-		assertFalse(state.diagOfSpecifiedRows(1, 1, 1, 1));
-		assertTrue(state.diagOfSpecifiedRows(1, 1, 1, 1));
-		assertFalse(state.diagOfSpecifiedRows(1, 1, 3, 1));
-		assertFalse(state.diagOfSpecifiedRows(1, 4, 1, 1));
-		assertTrue(state.diagOfSpecifiedRows(1, 0, 1, 2));
+		assertFalse(state.helpForDiagOfSpecifiedRows(1, 1, 1, 1));
+		assertFalse(state.helpForDiagOfSpecifiedRows(1, 1, 1, 1));
+		assertTrue(state.helpForDiagOfSpecifiedRows(1, 1, 1, 1));
+		assertFalse(state.helpForDiagOfSpecifiedRows(1, 1, 3, 1));
+		assertFalse(state.helpForDiagOfSpecifiedRows(1, 4, 1, 1));
+		assertTrue(state.helpForDiagOfSpecifiedRows(1, 0, 1, 2));
 	}
 	@Test 
 	public void testDiagOfSpecifiedRows2(){	
 
 		assertFalse(state.checkDiagOfAllGrids(1, 0, 0));
 		assertFalse(state.checkDiagOfAllGrids(1, 1, 1));
-		assertTrue(state.diagOfSpecifiedRows(1, 1, 0, 2));
+		assertTrue(state.helpForDiagOfSpecifiedRows(1, 1, 0, 2));
 	}
 	
 	@Test 

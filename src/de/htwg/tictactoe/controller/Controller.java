@@ -21,7 +21,16 @@ public class Controller extends Observable {
 		this.game = game;
 		winInit();
 	}
+	public boolean getTurn(){
+		return myTurn;
+	}
 	
+	public boolean getWin(int i){
+		if(i == 1 || i == 0){
+			return won[i];
+		}
+		return false;
+	}
 	public Player getPlayer(int player){
 		if(player < 2){
 			return players[player];

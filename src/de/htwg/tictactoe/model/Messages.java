@@ -2,8 +2,6 @@ package de.htwg.tictactoe.model;
 
 public final class Messages {
 	
-	private Messages() {
-	}
 	public final static String WELCOME_MESSAGE = "Welcome to HTWG TicTacToe 3D! \n"
 			+ "please enter the two players name with - between then (don't forget no spacing)";
 
