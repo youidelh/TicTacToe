@@ -22,10 +22,10 @@ public class GameState {
 	 * init of all Arrays for the 3 grids
 	 */
 	private void init(){
-		rowGridScore = new ArrayList<>(3);
-		colsGridScore = new ArrayList<>(3);
-		diagGridScore = new ArrayList<>(3);
-		diagOfAllGrids = new ArrayList<>(2);
+		rowGridScore = new ArrayList<int[]>(3);
+		colsGridScore = new ArrayList<int[]>(3);
+		diagGridScore = new ArrayList<int[]>(3);
+		diagOfAllGrids = new ArrayList<int[][]>(2);
 		// adding 3 int-arrays for the 3 grids
 		for (int i = 0; i < 3; i++) {
 			rowGridScore.add(new int[3]);

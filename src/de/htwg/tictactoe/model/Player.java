@@ -1,5 +1,7 @@
 package de.htwg.tictactoe.model;
 
+import de.htwg.tictactoe.model.Grid;
+
 public class Player {
 	private String name;
 	private String symbol;
