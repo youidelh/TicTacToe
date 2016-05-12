@@ -2,6 +2,8 @@ package de.htwg.tictactoe.model;
 
 public final class Messages {
 	
+	private Messages() {
+	}
 	public static final String WELCOME_MESSAGE = "Welcome to HTWG TicTacToe 3D! \n"
 			+ "please enter the two players name with - between then (don't forget no spacing)";
 
@@ -27,7 +29,7 @@ public final class Messages {
 	
 	public static final String PLAYER_NAME = "please enter players name again";
 	
-	public static String playerMove_toString(String player, int row, int column, int grid) {
+	public static String playerMoveToString(String player, int row, int column, int grid) {
 		return player + " played : (" + row + "," + column + ") in Grid " + grid + "\n";
 	}
 	

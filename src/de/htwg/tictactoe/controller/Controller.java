@@ -92,7 +92,7 @@ public class Controller extends Observable {
 			}else{
 				won[playerIndex] = players[playerIndex].move(row, column, grid);
 				int nextIndex = playerIndex == 0 ? 1 : 0;
-				setStatusMessage(Messages.playerMove_toString(players[playerIndex].getName(), row, column, grid) +
+				setStatusMessage(Messages.playerMoveToString(players[playerIndex].getName(), row, column, grid) +
 						players[nextIndex].getName() + Messages.NEXT);
 				notifyObservers();
 			}
