@@ -75,7 +75,7 @@ public class Grid {
 		for (int i = 0; i < row; i++) {
 			space+= "  ";
 		}
-		sb.append(space+"\\-----\\-----\\-----\\");
+		sb.append(space+"\\-------\\-------\\-------\\");
 		sb.append(" \\-------\\-------\\-------\\");
 		sb.append(newLine);
 		return sb.toString();
@@ -102,7 +102,7 @@ public class Grid {
 			for (int column = 0; column < cell[row].length; column++) {
 				String value = cell[row][column].getValue() == "" ?
 						" " : cell[row][column].getValue();
-				sb.append("  "+value+"  \\");
+				sb.append("   "+value+"   \\");
 			}
 			sb.append(" \\");
 			for (int column = 0; column < cell[row].length; column++) {
