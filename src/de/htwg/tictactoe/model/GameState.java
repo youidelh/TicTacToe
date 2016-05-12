@@ -10,7 +10,7 @@ public class GameState {
 	private List<int[]> rowGridScore;
 	private List<int[]> colsGridScore;
 	private List<int[]> diagGridScore;
-	public List<int[][]> diagOfAllGrids;
+	private List<int[][]> diagOfAllGrids;
 	private int[][] colsAllGrid;
 	
 	/**

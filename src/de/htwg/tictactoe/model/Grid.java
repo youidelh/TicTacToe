@@ -2,7 +2,7 @@ package de.htwg.tictactoe.model;
 
 public class Grid {
 
-	private int GRIDE_SIZE = 3;
+	private int gridSize = 3;
 	
 	// 2D Cell field
 	private Cell[][] cell;
@@ -11,7 +11,7 @@ public class Grid {
 	 * Constructor 
 	 */
 	public Grid() {
-		cell = new Cell[GRIDE_SIZE][GRIDE_SIZE];
+		cell = new Cell[gridSize][gridSize];
 		for (int row = 0; row < cell.length; row++) {
 			for (int column = 0; column < cell[row].length; column++) {
 				cell[row][column] = new Cell(row, column);
@@ -64,7 +64,7 @@ public class Grid {
 	 * @return Grid size
 	 */
 	public int getGridSize(){
-		return GRIDE_SIZE;
+		return gridSize;
 	}
 	
 	public String newLine(int row){
@@ -81,7 +81,7 @@ public class Grid {
 		return sb.toString();
 	}
 	public void resetGrid(){
-		cell = new Cell[GRIDE_SIZE][GRIDE_SIZE];
+		cell = new Cell[gridSize][gridSize];
 		for (int row = 0; row < cell.length; row++) {
 			for (int column = 0; column < cell[row].length; column++) {
 				cell[row][column] = new Cell(row, column);
