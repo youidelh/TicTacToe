@@ -44,7 +44,7 @@ public class GameState {
 	 * increments and checks a row of one grid
 	 * @param row
 	 * @param column 
-	 * @param grid placement of the grid
+	 * @param grid placement of the grid 
 	 * @return
 	 */
 	public boolean checkRow(int row, int grid){
@@ -116,6 +116,14 @@ public class GameState {
 		}
 		return false;
 	}
+	
+	public boolean checkGridToIncrement(int grid, int row, int column){
+		int gridToIncrement = grid == 2 ? 1: 0;
+		if(++diagOfAllGrids.get(gridToIncrement)[row][column] == NUMBER_TO_WIN){
+			return true;
+		}
+		return false;
+	}
 	/**
 	 * increments and checks diagonal of 3D grid
 	 * @param row
@@ -131,11 +139,11 @@ public class GameState {
 				return diagStartingFromMiddle(row, column);
 			}
 		}else if(grid == 2 || grid == 0){
-			int gridToIncrement = grid == 2 ? 1: 0;
-			if(++diagOfAllGrids.get(gridToIncrement)[row][column] == NUMBER_TO_WIN){
+			if(!checkGridToIncrement(grid, row, column)){
+				return diagOfSpecifiedRows(grid, row, column); 
+			}else{
 				return true;
 			}
-			return diagOfSpecifiedRows(gridToIncrement, row, column);
 		}
 		return false;
 	}
@@ -170,6 +178,15 @@ public class GameState {
 		return false;
 	}
 	/**
+	 * check if the given grid is 0 , 1 or 2 and returns if the given is 0 1 and 1 if the given is 0
+	 */
+	public int checkGivenGrid(int grid){
+		if(grid != 0 && grid != 1 ){
+			return -1;
+		}
+		return grid == 0 ? 1 : 0;
+	}
+	/**
 	 * Help method 
 	 * @param grid
 	 * @param row
@@ -177,14 +194,13 @@ public class GameState {
 	 * @return
 	 */
 	public boolean diagOfSpecifiedRows(int grid, int row, int column){
-		if(grid != 0 && grid != 1 ){
+		if(checkGivenGrid(grid) == -1){
 			return false;
 		}
-		int token = grid == 0 ? 1 : 0;
 		if(row == 2 || column == 2){
-			return helpForDiagOfSpecifiedRows(token, row, column, -2);
+			return helpForDiagOfSpecifiedRows(checkGivenGrid(grid) , row, column, -2);
 		}else if(row == 0 || column == 0){
-			return helpForDiagOfSpecifiedRows(token, row, column, 2);
+			return helpForDiagOfSpecifiedRows(checkGivenGrid(grid) , row, column, 2);
 		}
 		return false;
 	}

@@ -140,6 +140,9 @@ public class GameStateTest {
 		assertTrue(state.checkForWin(2, 2, 0));
 		//check diagonal of all grids
 		assertTrue(state.checkForWin(2, 2, 2));
-		
+	}
+	@Test
+	public void testCheckGivenGrid(){
+		assertEquals(0, state.checkGivenGrid(1));
 	}
 }

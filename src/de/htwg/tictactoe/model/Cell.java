@@ -41,7 +41,7 @@ public class Cell {
 	 * @return true if the Cell has a value other then ""
 	 */
 	public boolean isSet() {
-		return !value.equals("");
+		return !"".equals(value);
 	}
 
 	/**Get the row

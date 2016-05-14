@@ -144,8 +144,8 @@ public class Controller extends Observable {
 	}
 	
 	public void checkBeforeSetPlayer(String player, int i, String symbol){
-		if(player.equals("")){
-			setStatusMessage(Messages.PLAYER_NAME);
+		if("".equals(player)){
+			setStatusMessage(Messages.PLAYER_NAME); 
 			notifyObservers();
 		}else{
 			this.players[i] = new Player(player, symbol, game.getGrids());
