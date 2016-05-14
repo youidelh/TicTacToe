@@ -2,8 +2,7 @@ package de.htwg.tictactoe.model;
 
 public final class Messages {
 	
-	private Messages() {
-	}
+	
 	public static final String WELCOME_MESSAGE = "Welcome to HTWG TicTacToe 3D! \n"
 			+ "please enter the two players name with - between then (don't forget no spacing)";
 
@@ -28,6 +27,9 @@ public final class Messages {
 	public static final String ERROR_MOVE = "you are out of the limit of the grid!! please retry with correct data";
 	
 	public static final String PLAYER_NAME = "please enter players name again";
+	
+	private Messages() {
+	}
 	
 	public static String playerMoveToString(String player, int row, int column, int grid) {
 		return player + " played : (" + row + "," + column + ") in Grid " + grid + "\n";

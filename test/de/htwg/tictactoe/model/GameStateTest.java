@@ -69,9 +69,9 @@ public class GameStateTest {
 		
 	} 
 	@Test
-	public void testIncrementAllCells(){ 
-		assertFalse(state.checkDiagOfAllGrids(2, 1, 0));
-		assertFalse(state.checkDiagOfAllGrids(0, 1, 2));
+	public void testIncrementCell(){ 
+		assertFalse(state.checkDiagOfAllGrids(2, 1, 2));
+		assertFalse(state.checkDiagOfAllGrids(0, 1, 0));
 		assertTrue(state.checkDiagOfAllGrids(1, 1, 1));
 	}
 	@Test
@@ -105,8 +105,9 @@ public class GameStateTest {
 	}
 	@Test 
 	public void testHelpForDiagOfSpecifiedRows(){
-		assertFalse(state.diagOfSpecifiedRows(0, 0, 1));
-		assertFalse(state.diagOfSpecifiedRows(0, 1, 0));
+		assertFalse(state.diagOfSpecifiedRows(0, 0, 2));
+		assertFalse(state.diagOfSpecifiedRows(3, 0, 1));
+
 	}
 	@Test 
 	public void testDiagOfSpecifiedRows(){

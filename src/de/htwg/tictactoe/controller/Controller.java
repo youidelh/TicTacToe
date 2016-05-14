@@ -144,7 +144,7 @@ public class Controller extends Observable {
 	}
 	
 	public void checkBeforeSetPlayer(String player, int i, String symbol){
-		if(player == ""){
+		if(player.equals("")){
 			setStatusMessage(Messages.PLAYER_NAME);
 			notifyObservers();
 		}else{

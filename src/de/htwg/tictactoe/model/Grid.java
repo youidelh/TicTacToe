@@ -41,7 +41,7 @@ public class Grid {
 	 */
 	public boolean setCell(int row, int column, String value){
 		if(row < cell.length && column < cell[row].length && 
-				cell[row][column].getValue() == ""){
+				cell[row][column].getValue().equals("")){
 			cell[row][column].setValue(value);
 			return true;
 		}else {
@@ -100,7 +100,7 @@ public class Grid {
 			}
 			sb.append(space+"\\");
 			for (int column = 0; column < cell[row].length; column++) {
-				String value = cell[row][column].getValue() == "" ?
+				String value = cell[row][column].getValue().equals("") ?
 						" " : cell[row][column].getValue();
 				sb.append("   "+value+"   \\");
 			}

@@ -12,7 +12,7 @@ public class GameState {
 	private List<int[]> diagGridScore;
 	private List<int[][]> diagOfAllGrids;
 	private int[][] colsAllGrid;
-	
+	 
 	/**
 	 * constructor
 	 */
@@ -93,7 +93,7 @@ public class GameState {
 	 * @param cell
 	 * @return
 	 */
-	private boolean incrementAllCells(int[][] cell){
+	private boolean incrementCell(int[][] cell){
 		for (int i = 0; i < cell.length; i++) {
 			for (int j = 0; j < cell[i].length; j++) {
 				if(++cell[i][j] == NUMBER_TO_WIN){
@@ -110,8 +110,7 @@ public class GameState {
 	 */
 	private boolean helpForCheckDiagOfAllGrids(){
 		for (int k = 0; k < diagOfAllGrids.size(); k++) {
-			boolean value = incrementAllCells(diagOfAllGrids.get(k));
-			if(value){
+			if(incrementCell(diagOfAllGrids.get(k))){
 				return true;
 			}
 		}
@@ -136,11 +135,7 @@ public class GameState {
 			if(++diagOfAllGrids.get(gridToIncrement)[row][column] == NUMBER_TO_WIN){
 				return true;
 			}
-			if(gridToIncrement == 0){
-				return diagOfSpecifiedRows(gridToIncrement + 1, row, column);
-			}else if(gridToIncrement == 1){
-				return diagOfSpecifiedRows(gridToIncrement - 1, row, column);
-			}
+			return diagOfSpecifiedRows(gridToIncrement, row, column);
 		}
 		return false;
 	}
@@ -182,15 +177,19 @@ public class GameState {
 	 * @return
 	 */
 	public boolean diagOfSpecifiedRows(int grid, int row, int column){
+		if(grid != 0 && grid != 1 ){
+			return false;
+		}
+		int token = grid == 0 ? 1 : 0;
 		if(row == 2 || column == 2){
-			return helpForDiagOfSpecifiedRows(grid, row, column, -2);
+			return helpForDiagOfSpecifiedRows(token, row, column, -2);
 		}else if(row == 0 || column == 0){
-			return helpForDiagOfSpecifiedRows(grid, row, column, 2);
+			return helpForDiagOfSpecifiedRows(token, row, column, 2);
 		}
 		return false;
 	}
 	/**
-	 * increments and checks the 3d grid diagonal
+	 * increments and checks the 3d grid diagonal 
 	 * @param grid
 	 * @param row
 	 * @param column
@@ -204,17 +203,24 @@ public class GameState {
 				&& ++diagOfAllGrids.get(grid)[mainRow][mainColumn] == NUMBER_TO_WIN){
 			return true;
 		}
-		if( ( mainColumn < NUMBER_TO_WIN && row < NUMBER_TO_WIN 
-				&& row != mainRow) 
-				&& ++diagOfAllGrids.get(grid)[row][mainColumn] == NUMBER_TO_WIN){
+		if( row != mainRow && checkIfWinForSpecifiedRows(row, mainColumn, grid)){
 			return true;
 		}
-		if( (mainRow < NUMBER_TO_WIN && column < NUMBER_TO_WIN 
-				&& column != mainColumn) 
-				&& ++diagOfAllGrids.get(grid)[mainRow][column] == NUMBER_TO_WIN){
+		if(column != mainColumn && checkIfWinForSpecifiedRows(mainRow, column, grid)){
 			return true;
 		}
 		return false;
+	}
+	/**
+	 * checks if rows and column are < 3 and checks for win 
+	 * @param row
+	 * @param column
+	 * @param grid
+	 * @return
+	 */
+	private boolean checkIfWinForSpecifiedRows(int row, int column, int grid){
+		return row < NUMBER_TO_WIN && column < NUMBER_TO_WIN 
+				&& ++diagOfAllGrids.get(grid)[row][column] == NUMBER_TO_WIN;
 	}
 	/**
 	 * main function for check score
