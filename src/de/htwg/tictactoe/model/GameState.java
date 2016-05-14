@@ -17,28 +17,42 @@ public class GameState {
 	 * constructor
 	 */
 	public GameState() {
-		init(); 
+		initRowsArrays(); 
+		initDiagArrays();
+		initAllDiagArrays();
+		initColumnsArrays();
 	}
-	/**
-	 * init of all Arrays for the 3 grids
-	 */
-	private void init(){
-		rowGridScore = new ArrayList<int[]>(3);
-		colsGridScore = new ArrayList<int[]>(3);
-		diagGridScore = new ArrayList<int[]>(3);
+	private void initAllDiagArrays() {
 		diagOfAllGrids = new ArrayList<int[][]>(2);
-		// adding 3 int-arrays for the 3 grids
-		for (int i = 0; i < 3; i++) {
-			rowGridScore.add(new int[3]);
-			colsGridScore.add(new int[3]);
-			diagGridScore.add(new int[2]);
-		}
 		//3 * 3 matrix for the first Grid
 		diagOfAllGrids.add(new int[3][3]);
 		//3 * 3 matrix for the last Grid
-		diagOfAllGrids.add(new int[3][3]);
+		diagOfAllGrids.add(new int[3][3]);		
+	}
+	private void initColumnsArrays() {
+		colsGridScore = new ArrayList<int[]>(3);
+		// adding 3 intArrays for the 3 grids
+		for (int i = 0; i < 3; i++) {
+			colsGridScore.add(new int[3]);
+		}
 		// vertical column of all grids
 		colsAllGrid = new int[3][3];
+		
+	}
+	private void initDiagArrays() {
+		diagGridScore = new ArrayList<int[]>(3);
+		// adding 3 intArrays for the 3 grids
+		for (int i = 0; i < 3; i++) {
+			diagGridScore.add(new int[2]);
+		}		
+	}
+	private void initRowsArrays() {
+		rowGridScore = new ArrayList<int[]>(3);
+		// adding 3 intArrays for the 3 grids
+		for (int i = 0; i < 3; i++) {
+			rowGridScore.add(new int[3]);
+		}
+		
 	}
 	/**
 	 * increments and checks a row of one grid
@@ -70,22 +84,28 @@ public class GameState {
 		return false;
 	}
 	/**
-	 * increments and checks diagonal of one grid
-	 * @param row
-	 * @param column 
-	 * @param grid placement of the grid
-	 * @return
+	 * check cell of the other side in the diagonal in one grid
 	 */
-	public boolean checkDiagonal(int row, int column, int grid){
-		if(row == column && ++diagGridScore.get(grid)[0] == NUMBER_TO_WIN){
-			return true;
-		}
+	public boolean checkCellInOtherSideOfDiagOneGrid(int row, int column, int grid){
 		for (int i = 0; i < NUMBER_TO_WIN; i++) {
 			if(row == i && column == (NUMBER_TO_WIN - 1 - i) && ++diagGridScore.get(grid)[1] == NUMBER_TO_WIN){
 				return true;
 			}
 		}
 		return false;
+	} 
+	/**
+	 * increments and checks diagonal of one grid
+	 * @param row
+	 * @param column 
+	 * @param grid placement of the grid
+	 * @return 
+	 */
+	public boolean checkDiagonal(int row, int column, int grid){
+		if(row == column && ++diagGridScore.get(grid)[0] == NUMBER_TO_WIN){
+			return true;
+		}
+		return checkCellInOtherSideOfDiagOneGrid(row, column, grid);
 	}
 	
 	/***
@@ -148,20 +168,34 @@ public class GameState {
 		return false;
 	}
 	
-	
+	/**
+	 * loop for diagonal starting from grid 1 row 1 column 1
+	 */
+	public boolean checkOneElementForDiagStartingFromMiddle(int i, int rowCol, int row, int column){
+		if(++diagOfAllGrids.get(i)[rowCol][rowCol] == NUMBER_TO_WIN 
+				|| ++diagOfAllGrids.get(i)[row][column] == NUMBER_TO_WIN)
+			return true;
+		return false; 
+	}
+	/**
+	 * get correct row or column or rowCol
+	 */
+	public int getCorrectVariable(int data , int toTestData){
+		return data == toTestData ? 0 : 2;
+	}
 	/**
 	 * help for diagStartingFromMiddle
 	 */
 	private boolean helpForDiagStartingFromMiddle(int row, int column, int token){
-		int row1 = row == token ? 0 : 2;
-		int column1 = column == token ? 0 : 2;
-		int rowCol = token == 0 ? 0 : 2;
+		int row1 = getCorrectVariable(row, token);
+		int column1 = getCorrectVariable(column, token);
+		int rowCol = getCorrectVariable(token, 0);
 		for (int i = 0; i < diagOfAllGrids.size(); i++) {
-			if(++diagOfAllGrids.get(i)[rowCol][rowCol] == NUMBER_TO_WIN 
-					|| ++diagOfAllGrids.get(i)[row1][column1] == NUMBER_TO_WIN)
+			if(checkOneElementForDiagStartingFromMiddle(i, rowCol, row1, column1)){
 				return true;
+			}
 		}
-		return false;
+			return false;
 	}
 	/**
 	 * increments and checks the 3d grid diagonal starting from the middle normal grid
@@ -215,13 +249,10 @@ public class GameState {
 	public boolean helpForDiagOfSpecifiedRows(int grid, int row, int column, int token){
 		int mainRow = Math.abs(row + token);
 		int mainColumn = Math.abs(column + token);
-		if((mainRow < NUMBER_TO_WIN && mainColumn < NUMBER_TO_WIN) 
-				&& ++diagOfAllGrids.get(grid)[mainRow][mainColumn] == NUMBER_TO_WIN){
-			return true;
-		}
-		if( (row != mainRow && checkIfWinForSpecifiedRows(row, mainColumn, grid))
+		if((checkIfWinForSpecifiedRows(mainRow, mainColumn, grid))
+				|| (row != mainRow && checkIfWinForSpecifiedRows(row, mainColumn, grid))
 				|| (column != mainColumn && checkIfWinForSpecifiedRows(mainRow, column, grid))){
-			return true;
+			return true; 
 		}
 		return false;
 	}

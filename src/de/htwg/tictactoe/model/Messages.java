@@ -2,14 +2,14 @@ package de.htwg.tictactoe.model;
 
 public final class Messages {
 	
+	public static final String PLEASE_MESSAGES = "please enter the two players name with - between then (don't forget no spacing)";
 	
-	public static final String WELCOME_MESSAGE = "Welcome to HTWG TicTacToe 3D! \n"
-			+ "please enter the two players name with - between then (don't forget no spacing)";
+	public static final String WELCOME_MESSAGE = "Welcome to HTWG TicTacToe 3D! \n" +PLEASE_MESSAGES;
 
 	public static final String ERROR_GIVE_PLAYERS_RESET = "you can't reset the Game without giving the name of the players\n"
-			+ "please enter the two players name with - between then (don't forget no spacing)";
+			+ PLEASE_MESSAGES;
 	public static final String ERROR_GIVE_PLAYERS_START = "you can't start the Game without giving the name of the players\n"
-			+ "please enter the two players name with - between then (don't forget no spacing)";
+			+ PLEASE_MESSAGES;
 	
 	public static final String WIN_MESSAGE = " you won !! congratulation \n "
 			+ " if you want to start again press r + enter, if not press x + enter to exit";
