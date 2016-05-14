@@ -239,6 +239,13 @@ public class GameState {
 		return false;
 	}
 	/**
+	 * test if duplicate variable and check if win
+	 */
+	public boolean winCondition(int row, int column, int mainRow, int mainColumn, int grid){
+		return (row != mainRow && checkIfWinForSpecifiedRows(row, mainColumn, grid))
+				|| (column != mainColumn && checkIfWinForSpecifiedRows(mainRow, column, grid));
+	}
+	/**
 	 * increments and checks the 3d grid diagonal 
 	 * @param grid
 	 * @param row
@@ -249,9 +256,8 @@ public class GameState {
 	public boolean helpForDiagOfSpecifiedRows(int grid, int row, int column, int token){
 		int mainRow = Math.abs(row + token);
 		int mainColumn = Math.abs(column + token);
-		if((checkIfWinForSpecifiedRows(mainRow, mainColumn, grid))
-				|| (row != mainRow && checkIfWinForSpecifiedRows(row, mainColumn, grid))
-				|| (column != mainColumn && checkIfWinForSpecifiedRows(mainRow, column, grid))){
+		if((checkIfWinForSpecifiedRows(mainRow, mainColumn, grid)) 
+				|| winCondition(row, column, mainRow, mainColumn, grid)){
 			return true; 
 		}
 		return false;
