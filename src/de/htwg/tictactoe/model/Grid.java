@@ -102,7 +102,7 @@ public class Grid {
 		sb.append(newLine(row+1));
 		return sb.toString();
 	}
-	public String addCellToString(int row, int grid){
+	public String addCellToString(int row){
 		StringBuilder sb = new StringBuilder();
 		String space = addSpacing(row) + " ";
 		sb.append(space+"\\");
@@ -117,7 +117,7 @@ public class Grid {
 		StringBuilder sb = new StringBuilder();
 		sb.append(newLine(0));
 		for (int row = 0; row < cell.length; row++) {
-			sb.append(addCellToString(row, grid));
+			sb.append(addCellToString(row));
 			sb.append(addExplanationCellToString(row, grid));
 		}
 		return sb.toString();

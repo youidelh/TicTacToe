@@ -46,7 +46,7 @@ public class Controller extends Observable {
 	/**
 	 * boolean for the two player states
 	 */
-	public void winInit(){
+	public void winInit(){ 
 		for (int i = 0; i < won.length; i++) {
 			won[i] = false;
 		}
@@ -63,7 +63,7 @@ public class Controller extends Observable {
 			setStatusMessage(Messages.GAME_RESET_MESSAGE + players[0].getName() + Messages.INFO_ABOUT_THE_GAME);
 			notifyObservers();
 		} else {
-			setStatusMessage(Messages.ERROR_GIVE_PLAYERS);
+			setStatusMessage(Messages.ERROR_GIVE_PLAYERS_RESET);
 			notifyObservers();
 		}
 
@@ -84,23 +84,42 @@ public class Controller extends Observable {
 	 * @param grid
 	 */
 	public void tryToMove(int playerIndex, int row, int column, int grid){
-		if(row < 3 && column < 3 && grid < 3){
-			if(game.cellIsSet(row, column, grid)){
+		if(game.cellIsSet(row, column, grid)){
 				myTurn = !myTurn;
 				setStatusMessage(Messages.CELL_IS_SET);
 				notifyObservers();
-			}else{
-				won[playerIndex] = players[playerIndex].move(row, column, grid);
-				int nextIndex = playerIndex == 0 ? 1 : 0;
-				setStatusMessage(Messages.playerMoveToString(players[playerIndex].getName(), row, column, grid) +
-						players[nextIndex].getName() + Messages.NEXT);
-				notifyObservers();
-			}
 		}else{
-			setStatusMessage(Messages.ERROR_MOVE);
+			won[playerIndex] = players[playerIndex].move(row, column, grid);
+			int nextIndex = playerIndex == 0 ? 1 : 0;
+			setStatusMessage(Messages.playerMoveToString(players[playerIndex].getName(), row, column, grid) +
+					players[nextIndex].getName() + Messages.NEXT);
 			notifyObservers();
 		}
 		
+	}
+	/**
+	 * check if move correct
+	 */
+	public boolean checkData(int row, int column, int grid){
+		if(row > 2 || column > 2 || grid > 2){
+			setStatusMessage(Messages.ERROR_MOVE);
+			notifyObservers();
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * check for win
+	 */
+	public void checkForWin(){
+		if(won[0]){
+			setStatusMessage(players[0].getName() + Messages.WIN_MESSAGE);
+			notifyObservers();
+		}else if(won[1]){
+			setStatusMessage(players[1].getName() +Messages.WIN_MESSAGE);
+			notifyObservers();
+		}
 	}
 	
 	/**
@@ -111,23 +130,19 @@ public class Controller extends Observable {
 	 */
 	public void setValue(int row, int column, int grid){
 		if (players[0] == null || players[1] == null) {
-			setStatusMessage(Messages.ERROR_GIVE_PLAYERS);
+			setStatusMessage(Messages.ERROR_GIVE_PLAYERS_START);
 			notifyObservers();
 			return;
 		}
-		if(myTurn){
-			tryToMove(0, row, column, grid);
-		}else{
-			tryToMove(1, row, column, grid);
+		if (checkData(row, column, grid)) {
+			if(myTurn){
+				tryToMove(0, row, column, grid);
+			}else{
+				tryToMove(1, row, column, grid);
+			}
+			myTurn = !myTurn;
+			checkForWin();
 		}
-		myTurn = !myTurn;
-	if(won[0]){
-		setStatusMessage(players[0].getName() + Messages.WIN_MESSAGE);
-		notifyObservers();
-	}else if(won[1]){
-		setStatusMessage(players[1].getName() +Messages.WIN_MESSAGE);
-		notifyObservers();
-	}
 		
 	}
 

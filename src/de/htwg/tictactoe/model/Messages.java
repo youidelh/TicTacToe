@@ -6,7 +6,9 @@ public final class Messages {
 	public static final String WELCOME_MESSAGE = "Welcome to HTWG TicTacToe 3D! \n"
 			+ "please enter the two players name with - between then (don't forget no spacing)";
 
-	public static final String ERROR_GIVE_PLAYERS = "you cant reset the Game without giving the name of the players\n"
+	public static final String ERROR_GIVE_PLAYERS_RESET = "you can't reset the Game without giving the name of the players\n"
+			+ "please enter the two players name with - between then (don't forget no spacing)";
+	public static final String ERROR_GIVE_PLAYERS_START = "you can't start the Game without giving the name of the players\n"
 			+ "please enter the two players name with - between then (don't forget no spacing)";
 	
 	public static final String WIN_MESSAGE = " you won !! congratulation \n "
@@ -24,7 +26,7 @@ public final class Messages {
 	
 	public static final String NEXT = " you are next!! \n";
 
-	public static final String ERROR_MOVE = "you are out of the limit of the grid!! please retry with correct data";
+	public static final String ERROR_MOVE = "you are out of the limit of the grid!! please retry with correct move";
 	
 	public static final String PLAYER_NAME = "please enter players name again";
 	

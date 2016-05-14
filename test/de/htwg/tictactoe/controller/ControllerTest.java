@@ -58,12 +58,6 @@ public class ControllerTest {
 		assertFalse(controller.getTurn());
 		controller.tryToMove(0, 0, 0, 0);
 
-		controller.tryToMove(0, 3, 0, 0);
-		controller.tryToMove(0, 0, 3, 0);
-		controller.tryToMove(0, 0, 0, 3);
-		
-
-		controller.tryToMove(1, 2, 0, 0);
 	}
 	
 	@Test
@@ -87,6 +81,11 @@ public class ControllerTest {
 		controller.setValue(1, 1, 1);
 		controller.setValue(0, 0, 2);
 		controller.setValue(1, 1, 2);
+		
+
+		controller.setValue(3, 0, 0);
+		controller.setValue(0, 3, 0);
+		controller.setValue(0, 0, 3);
 	}
 	
 	@Test 

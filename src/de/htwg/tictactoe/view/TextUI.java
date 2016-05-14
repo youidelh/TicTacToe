@@ -26,16 +26,23 @@ public class TextUI implements IObserver {
 		if ("q".equalsIgnoreCase(line)) {
 			continu = false;
 		}
+		
+		if ("r".equalsIgnoreCase(line)) {
+			controller.reset();
+		}
+		checkIfUsernames(line);
+		checkIfPlayerMove(line);		
+		return continu;
+	}
+	public void checkIfUsernames(String line){
 		if (line.matches("^[a-zA-Z0-9_-]*$") && line.contains("-")){
 			String[] players = line.split("-");
 			if(players.length == 2 ){
 				controller.setPlayers(players[0], players[1]);
 			}
 		}
-		if ("r".equalsIgnoreCase(line)) {
-			controller.reset();
-		}
-		
+	}
+	public void checkIfPlayerMove(String line){
 		// if the command line has the form 120, set the cell (1,2) in the grid 0
 		if (line.matches("[0-9][0-9][0-9]")) {
 			Pattern p = Pattern.compile("[0-9]");
@@ -47,7 +54,6 @@ public class TextUI implements IObserver {
 			}
 			controller.setValue(arg[0], arg[1], arg[2]);
 		}
-		return continu;
 	}
 
 	public void printTUI() {
