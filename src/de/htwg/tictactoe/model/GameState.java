@@ -132,20 +132,17 @@ public class GameState {
 	 * @return
 	 */
 	public boolean checkDiagOfAllGrids(int row, int column, int grid) {
-		if(grid == 1){
-			if(row == 1 && column == 1){
+		if(grid == 1 && row == 1 && column == 1){
 				return incrementAllCells();
-			}else {
-				return diagStartingFromMiddle(row, column);
-			}
-		}else if(grid == 2 || grid == 0){
-			if(!checkGridToIncrement(grid, row, column)){
-				return diagOfSpecifiedRows(grid, row, column); 
-			}else{
-				return true;
-			}
+		}else if(grid == 1) {
+			return diagStartingFromMiddle(row, column);
 		}
-		return false;
+		if((grid == 2 || grid == 0) && checkGridToIncrement(grid, row, column)){
+				return true;
+		}else if((grid == 2 || grid == 0)){
+			return diagOfSpecifiedRows(grid, row, column); 
+		}
+		return false; 
 	}
 	
 	
@@ -219,8 +216,10 @@ public class GameState {
 				&& ++diagOfAllGrids.get(grid)[mainRow][mainColumn] == NUMBER_TO_WIN){
 			return true;
 		}
-		if( (row != mainRow && checkIfWinForSpecifiedRows(row, mainColumn, grid)) 
-				|| (column != mainColumn && checkIfWinForSpecifiedRows(mainRow, column, grid))){
+		if( row != mainRow && checkIfWinForSpecifiedRows(row, mainColumn, grid)){
+			return true;
+		}
+		if(column != mainColumn && checkIfWinForSpecifiedRows(mainRow, column, grid)){
 			return true;
 		}
 		return false;

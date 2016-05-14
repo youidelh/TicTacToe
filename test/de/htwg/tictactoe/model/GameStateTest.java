@@ -59,7 +59,7 @@ public class GameStateTest {
 		assertFalse(state.checkDiagOfAllGrids(1, 0, 3));
 
 		assertFalse(state.checkDiagOfAllGrids(1, 2, 0));
-		assertTrue(state.checkDiagOfAllGrids(1, 2, 2));
+		assertTrue(state.checkDiagOfAllGrids(1, 0, 2));
 	}
 	@Test
 	public void testCheckDiagOfAllGrids2(){
