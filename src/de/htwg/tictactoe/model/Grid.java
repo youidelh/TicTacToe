@@ -11,7 +11,7 @@ public class Grid {
 	 * Constructor 
 	 */
 	public Grid() {
-		cell = new Cell[gridSize][gridSize];
+		cell = new Cell[gridSize][gridSize]; 
 		for (int row = 0; row < cell.length; row++) {
 			for (int column = 0; column < cell[row].length; column++) {
 				cell[row][column] = new Cell(row, column);
@@ -71,10 +71,7 @@ public class Grid {
 		String newLine = System.getProperty("line.separator");
 		StringBuilder sb = new StringBuilder();
 		sb.append(newLine);
-		String space = "";
-		for (int i = 0; i < row; i++) {
-			space+= "  ";
-		}
+		String space = addSpacing(row);
 		sb.append(space+"\\-------\\-------\\-------\\");
 		sb.append(" \\-------\\-------\\-------\\");
 		sb.append(newLine);
@@ -88,29 +85,41 @@ public class Grid {
 			}
 		}
 	}
-
-
+	
+	public String addSpacing(int size){
+		String space = "";
+		for (int i = 0; i < size * 2; i++) {
+			space+= " ";
+		}
+		return space;
+	}
+	public String addExplanationCellToString(int row, int grid){
+		StringBuilder sb = new StringBuilder();
+		sb.append(" \\");
+		for (int column = 0; column < cell[row].length; column++) {
+			sb.append("  "+row+column+grid+"  \\");
+		}
+		sb.append(newLine(row+1));
+		return sb.toString();
+	}
+	public String addCellToString(int row, int grid){
+		StringBuilder sb = new StringBuilder();
+		String space = addSpacing(row) + " ";
+		sb.append(space+"\\");
+		for (int column = 0; column < cell[row].length; column++) {
+			String value = "".equals(cell[row][column].getValue()) ?
+					" " : cell[row][column].getValue();
+			sb.append("   "+value+"   \\");
+		}
+		return sb.toString();
+	}
 	public String toString(int grid){
 		StringBuilder sb = new StringBuilder();
 		sb.append(newLine(0));
 		for (int row = 0; row < cell.length; row++) {
-			String space = " ";
-			for (int i = 0; i < row; i++) {
-				space+= "  ";
-			}
-			sb.append(space+"\\");
-			for (int column = 0; column < cell[row].length; column++) {
-				String value = "".equals(cell[row][column].getValue()) ?
-						" " : cell[row][column].getValue();
-				sb.append("   "+value+"   \\");
-			}
-			sb.append(" \\");
-			for (int column = 0; column < cell[row].length; column++) {
-				sb.append("  "+row+column+grid+"  \\");
-			}
-			sb.append(newLine(row+1));
+			sb.append(addCellToString(row, grid));
+			sb.append(addExplanationCellToString(row, grid));
 		}
 		return sb.toString();
-	}
-	
+	}	
 }
