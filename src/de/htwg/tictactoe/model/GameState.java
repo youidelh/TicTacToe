@@ -108,7 +108,7 @@ public class GameState {
 	 * 
 	 * refractor of checkDiagOfAllGrids method
 	 */
-	private boolean helpForCheckDiagOfAllGrids(){
+	private boolean incrementAllCells(){
 		for (int k = 0; k < diagOfAllGrids.size(); k++) {
 			if(incrementCell(diagOfAllGrids.get(k))){
 				return true;
@@ -134,7 +134,7 @@ public class GameState {
 	public boolean checkDiagOfAllGrids(int row, int column, int grid) {
 		if(grid == 1){
 			if(row == 1 && column == 1){
-				return helpForCheckDiagOfAllGrids();
+				return incrementAllCells();
 			}else {
 				return diagStartingFromMiddle(row, column);
 			}
@@ -185,7 +185,7 @@ public class GameState {
 			return -1;
 		}
 		return grid == 0 ? 1 : 0;
-	}
+	} 
 	/**
 	 * Help method 
 	 * @param grid
@@ -219,10 +219,8 @@ public class GameState {
 				&& ++diagOfAllGrids.get(grid)[mainRow][mainColumn] == NUMBER_TO_WIN){
 			return true;
 		}
-		if( row != mainRow && checkIfWinForSpecifiedRows(row, mainColumn, grid)){
-			return true;
-		}
-		if(column != mainColumn && checkIfWinForSpecifiedRows(mainRow, column, grid)){
+		if( (row != mainRow && checkIfWinForSpecifiedRows(row, mainColumn, grid)) 
+				|| (column != mainColumn && checkIfWinForSpecifiedRows(mainRow, column, grid))){
 			return true;
 		}
 		return false;
