@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import de.htwg.tictactoe.controller.Controller;
 import de.htwg.tictactoe.model.Game;
-import de.htwg.tictactoe.view.TextUI;
+import de.htwg.tictactoe.view.*;
 
 public class TicTacToe {
 	static Scanner scanner;
@@ -14,6 +14,8 @@ public class TicTacToe {
 		Controller controller = new Controller(game);
 		TextUI tui = new TextUI(controller);
 		tui.printTUI();
+		GraphicalUI gui = new GraphicalUI(controller);
+		gui.test();
 		 //continue until the user decides to quit
 		boolean continu = true;
 		scanner = new Scanner(System.in);
