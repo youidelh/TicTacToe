@@ -23,6 +23,16 @@ public class GraphicalUI extends JPanel implements ActionListener, IObserver {
         textField = new JTextArea(5, 20);
         JScrollPane scrollPane = new JScrollPane(textField);
         textField.setEditable(false);
+        GraphicalUI_init();
+    }
+
+    public void GraphicalUI_init() {
+        setLayout( new GridLayout( 3, 0, 10, 10 ) );
+        for(int panel=0; panel<PANELS; panel++) {
+            SingleBoard sb = new SingleBoard(panel, this);
+            boards[panel] = sb;
+            add(sb);
+        }
     }
 
     @Override
@@ -74,14 +84,7 @@ public class GraphicalUI extends JPanel implements ActionListener, IObserver {
 
     }
 
-    public GraphicalUI() {
-        setLayout( new GridLayout( 3, 0, 10, 10 ) );
-        for(int panel=0; panel<PANELS; panel++) {
-            SingleBoard sb = new SingleBoard(panel, this);
-            boards[panel] = sb;
-            add(sb);
-        }
-    }
+
 
     public char getValue(int row, int col, int plane) {
         return boards[plane].getValue(row, col);
@@ -111,7 +114,7 @@ public class GraphicalUI extends JPanel implements ActionListener, IObserver {
         frm.getContentPane().setLayout(new BorderLayout());
         frm.getContentPane().add(textField, BorderLayout.BEFORE_FIRST_LINE);
         textField.setText("current player: X");
-        frm.getContentPane().add(new GraphicalUI(), BorderLayout.CENTER);
+        frm.getContentPane().add(new GraphicalUI(controller), BorderLayout.CENTER);
         frm.pack();
         frm.setVisible(true);
         frm.setSize(300, 900);
