@@ -3,7 +3,8 @@ package de.htwg.tictactoe.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameState {
+
+public class GameState{
 	
 
 	private static final int NUMBER_TO_WIN = 3;
@@ -64,7 +65,7 @@ public class GameState {
 	public boolean checkRow(int row, int grid){
 		if(++rowGridScore.get(grid)[row] == NUMBER_TO_WIN){
 			return true;
-		}
+		} 
 		return false;
 	}
 	/**
@@ -172,8 +173,8 @@ public class GameState {
 	 * loop for diagonal starting from grid 1 row 1 column 1
 	 */
 	public boolean checkOneElementForDiagStartingFromMiddle(int i, int rowCol, int row, int column){
-		if(++diagOfAllGrids.get(i)[rowCol][rowCol] == NUMBER_TO_WIN 
-				|| ++diagOfAllGrids.get(i)[row][column] == NUMBER_TO_WIN)
+		if((diagOfAllGrids.get(i)[rowCol][rowCol]< 2 && ++diagOfAllGrids.get(i)[rowCol][rowCol] == NUMBER_TO_WIN )
+				||(diagOfAllGrids.get(i)[row][column]< 2 && ++diagOfAllGrids.get(i)[row][column] == NUMBER_TO_WIN))
 			return true;
 		return false; 
 	}
@@ -270,7 +271,7 @@ public class GameState {
 	 * @return
 	 */
 	private boolean checkIfWinForSpecifiedRows(int row, int column, int grid){
-		return row < NUMBER_TO_WIN && column < NUMBER_TO_WIN 
+		return row < NUMBER_TO_WIN && column < NUMBER_TO_WIN && diagOfAllGrids.get(grid)[row][column]< 1
 				&& ++diagOfAllGrids.get(grid)[row][column] == NUMBER_TO_WIN;
 	}
 	/**
@@ -289,4 +290,5 @@ public class GameState {
 		}
 		return false; 
 	}
+
 }
