@@ -48,20 +48,46 @@ public class GameStateTest {
 		assertTrue(state.checkDiagonal(2, 0, 0));	
 	}
 	
-	
+	@Test
+	public void testCheckRowOfAllGridsTogether(){
+		assertFalse(state.checkDiagOfAllGrids(0, 0, 2));
+		assertFalse(state.checkDiagOfAllGrids(0, 1, 1));
+		assertTrue(state.checkDiagOfAllGrids(0, 2, 0));
+	}
+	@Test
+	public void testCheckColumnOfAllGridsTogether(){
+		assertFalse(state.checkDiagOfAllGrids(0, 0, 2));
+		assertFalse(state.checkDiagOfAllGrids(1, 0, 1));
+		assertTrue(state.checkDiagOfAllGrids(2, 0, 0));
+	}
 	
 	@Test
-	public void testCheckDiagOfAllGrids2(){
+	public void testCheckDiagOfAllGridsTogether(){
+		assertFalse(state.checkDiagOfAllGrids(2, 0, 2));
 		assertFalse(state.checkDiagOfAllGrids(1, 1, 1));
-		assertFalse(state.checkDiagOfAllGrids(2, 1, 0));
-		assertTrue(state.checkDiagOfAllGrids(0, 1, 2));
-		
-	} 
+		assertTrue(state.checkDiagOfAllGrids(0, 2, 0));
+	}
 	@Test
-	public void testIncrementCell(){ 
-		assertFalse(state.checkDiagOfAllGrids(2, 1, 2));
-		assertFalse(state.checkDiagOfAllGrids(0, 1, 0));
-		assertTrue(state.checkDiagOfAllGrids(1, 1, 1));
+	public void testCheckDiagOfAllGridsTogetherOtherSide(){
+		assertFalse(state.checkDiagOfAllGrids(2, 0, 0));
+		assertFalse(state.checkDiagOfAllGrids(1, 1, 1));
+		assertTrue(state.checkDiagOfAllGrids(0, 2, 2));
+	}
+	@Test
+	public void testCheckDiagOfAllGridsTogetherEqualRow(){
+		assertFalse(state.checkDiagOfAllGrids(0, 0, 2));
+		assertFalse(state.checkDiagOfAllGrids(1, 1, 1));
+		assertTrue(state.checkDiagOfAllGrids(2, 2, 0));
+	}
+	
+	@Test
+	public void testCheckDiagOfAllGrids(){
+		assertFalse(state.checkDiagOfAllGrids(0, 0, 0));
+		assertFalse(state.checkDiagOfAllGrids(0, 1, 1));
+		assertTrue(state.checkDiagOfAllGrids(0, 2, 2));
+		
+		assertFalse(state.checkDiagOfAllGrids(1, 0, 1));
+		assertTrue(state.checkDiagOfAllGrids(2, 0, 2));
 	}
 	
 	@Test 
