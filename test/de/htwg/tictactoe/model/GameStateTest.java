@@ -48,82 +48,46 @@ public class GameStateTest {
 		assertTrue(state.checkDiagonal(2, 0, 0));	
 	}
 	
+	@Test
+	public void testCheckRowOfAllGridsTogether(){
+		assertFalse(state.checkDiagOfAllGrids(0, 0, 2));
+		assertFalse(state.checkDiagOfAllGrids(0, 1, 1));
+		assertTrue(state.checkDiagOfAllGrids(0, 2, 0));
+	}
+	@Test
+	public void testCheckColumnOfAllGridsTogether(){
+		assertFalse(state.checkDiagOfAllGrids(0, 0, 2));
+		assertFalse(state.checkDiagOfAllGrids(1, 0, 1));
+		assertTrue(state.checkDiagOfAllGrids(2, 0, 0));
+	}
+	
+	@Test
+	public void testCheckDiagOfAllGridsTogether(){
+		assertFalse(state.checkDiagOfAllGrids(2, 0, 2));
+		assertFalse(state.checkDiagOfAllGrids(1, 1, 1));
+		assertTrue(state.checkDiagOfAllGrids(0, 2, 0));
+	}
+	@Test
+	public void testCheckDiagOfAllGridsTogetherOtherSide(){
+		assertFalse(state.checkDiagOfAllGrids(2, 0, 0));
+		assertFalse(state.checkDiagOfAllGrids(1, 1, 1));
+		assertTrue(state.checkDiagOfAllGrids(0, 2, 2));
+	}
+	@Test
+	public void testCheckDiagOfAllGridsTogetherEqualRow(){
+		assertFalse(state.checkDiagOfAllGrids(0, 0, 2));
+		assertFalse(state.checkDiagOfAllGrids(1, 1, 1));
+		assertTrue(state.checkDiagOfAllGrids(2, 2, 0));
+	}
 	
 	@Test
 	public void testCheckDiagOfAllGrids(){
-		assertFalse(state.checkDiagOfAllGrids(1, 0, 1));
-		assertFalse(state.checkDiagOfAllGrids(1, 1, 1));
-		assertTrue(state.checkDiagOfAllGrids(0, 1, 1));
-		assertFalse(state.checkDiagOfAllGrids(0, 0, 1));
-		 
-		assertFalse(state.checkDiagOfAllGrids(1, 0, 3));
-
-		assertFalse(state.checkDiagOfAllGrids(1, 2, 0));
-		assertTrue(state.checkDiagOfAllGrids(1, 0, 2));
-	}
-	@Test
-	public void testCheckDiagOfAllGrids2(){
-		assertFalse(state.checkDiagOfAllGrids(1, 1, 1));
-		assertFalse(state.checkDiagOfAllGrids(2, 1, 0));
-		assertTrue(state.checkDiagOfAllGrids(0, 1, 2));
+		assertFalse(state.checkDiagOfAllGrids(0, 0, 0));
+		assertFalse(state.checkDiagOfAllGrids(0, 1, 1));
+		assertTrue(state.checkDiagOfAllGrids(0, 2, 2));
 		
-	} 
-	@Test
-	public void testIncrementCell(){ 
-		assertFalse(state.checkDiagOfAllGrids(2, 1, 2));
-		assertFalse(state.checkDiagOfAllGrids(0, 1, 0));
-		assertTrue(state.checkDiagOfAllGrids(1, 1, 1));
-	}
-	@Test
-	public void testDiagStartingFromMiddle(){
-		assertFalse(state.diagStartingFromMiddle(0, 2));
-		assertFalse(state.diagStartingFromMiddle(1, 0));
-		assertFalse(state.diagStartingFromMiddle(0, 1));
-		assertTrue(state.diagStartingFromMiddle(0, 1));
-		assertFalse(state.diagStartingFromMiddle(1, 1));
-		assertFalse(state.diagStartingFromMiddle(3, -2));
-	}
-	@Test
-	public void testDiagStartingFromMiddle2(){
-		assertFalse(state.diagStartingFromMiddle(2, 1));
-		assertFalse(state.diagStartingFromMiddle(1, 2));
-		assertFalse(state.diagStartingFromMiddle(5, -2));
-		assertTrue(state.diagStartingFromMiddle(2, 1));
-	} 
-	@Test 
-	public void testDiagStartingFromMiddle3(){
-		assertFalse(state.diagStartingFromMiddle(2, 1));
 		assertFalse(state.checkDiagOfAllGrids(1, 0, 1));
-		assertTrue(state.diagStartingFromMiddle(2, 1));
-	}
- 
-	@Test
-	public void testDiagStartingFromMiddle4(){ 
-	assertFalse(state.checkDiagOfAllGrids(2, 1, 1));
-	assertFalse(state.checkDiagOfAllGrids(2, 2, 0));
-	assertTrue(state.diagStartingFromMiddle(1, 0));
-	}
-	@Test 
-	public void testHelpForDiagOfSpecifiedRows(){
-		assertFalse(state.diagOfSpecifiedRows(0, 0, 2));
-		assertFalse(state.diagOfSpecifiedRows(3, 0, 1));
-
-	}
-	@Test 
-	public void testDiagOfSpecifiedRows(){
-		assertFalse(state.helpForDiagOfSpecifiedRows(1, 1, 1, 1));
-		assertFalse(state.helpForDiagOfSpecifiedRows(1, 1, 1, 1));
-		assertTrue(state.helpForDiagOfSpecifiedRows(1, 1, 1, 1));
-		assertFalse(state.helpForDiagOfSpecifiedRows(1, 1, 3, 1));
-		assertFalse(state.helpForDiagOfSpecifiedRows(1, 4, 1, 1));
-		assertTrue(state.helpForDiagOfSpecifiedRows(1, 0, 1, 2));
-	}
-	@Test 
-	public void testDiagOfSpecifiedRows2(){	
-
-		assertFalse(state.checkDiagOfAllGrids(1, 0, 0));
-		assertFalse(state.checkDiagOfAllGrids(1, 1, 1));
-		assertTrue(state.helpForDiagOfSpecifiedRows(1, 1, 0, 2));
+		assertTrue(state.checkDiagOfAllGrids(2, 0, 2));
 	}
 	
 	@Test 
@@ -140,9 +104,5 @@ public class GameStateTest {
 		assertTrue(state.checkForWin(2, 2, 0));
 		//check diagonal of all grids
 		assertTrue(state.checkForWin(2, 2, 2));
-	}
-	@Test
-	public void testCheckGivenGrid(){
-		assertEquals(0, state.checkGivenGrid(1));
 	}
 }
