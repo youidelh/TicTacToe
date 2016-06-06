@@ -8,13 +8,13 @@ import javafx.scene.transform.Translate;
 class Cam extends Group {
 	
 	
-    public Translate t;
-    public Translate p;
-    public Translate ip;
-    public Rotate rx;
-    Rotate ry; 
-    Rotate rz;
-    Scale s;
+    private Translate t;
+    private Translate p;
+    private Translate ip;
+    private Rotate rx;
+    private Rotate ry; 
+    private Rotate rz;
+    private Scale s;
     public Cam() { 
     	super(); 
     	init();
@@ -33,4 +33,32 @@ class Cam extends Group {
         rz.setAxis(Rotate.Z_AXIS);
         s = new Scale();
     }
+
+	public Translate getT() {
+		return t;
+	}
+
+	public Translate getP() {
+		return p;
+	}
+
+	public Translate getIp() {
+		return ip;
+	}
+
+	public Rotate getRx() {
+		return rx;
+	}
+
+	public Rotate getRy() {
+		return ry;
+	}
+
+	public Rotate getRz() {
+		return rz;
+	}
+
+	public Scale getS() {
+		return s;
+	}
 }

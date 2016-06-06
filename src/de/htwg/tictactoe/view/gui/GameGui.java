@@ -82,16 +82,16 @@ public class GameGui extends Application  implements IObserver {
                     controller.reset();
                 }
                 if(KeyCode.D.equals(ke.getCode())){
-                    cam.ry.setAngle(cam.ry.getAngle() - 5);
+                    cam.getRy().setAngle(cam.getRy().getAngle() - 5);
                 }
                 if(KeyCode.A.equals(ke.getCode())){
-                    cam.ry.setAngle(cam.ry.getAngle() + 5);
+                    cam.getRy().setAngle(cam.getRy().getAngle() + 5);
                 }
-                if(KeyCode.W.equals(ke.getCode()) && cam.rx.getAngle() > -8){
-                    cam.rx.setAngle(cam.rx.getAngle() - 5);
+                if(KeyCode.W.equals(ke.getCode()) && cam.getRx().getAngle() > -8){
+                    cam.getRx().setAngle(cam.getRx().getAngle() - 5);
                 }
-                if(KeyCode.S.equals(ke.getCode()) && cam.rx.getAngle() < 47){
-                    cam.rx.setAngle(cam.rx.getAngle() + 5);
+                if(KeyCode.S.equals(ke.getCode()) && cam.getRx().getAngle() < 47){
+                    cam.getRx().setAngle(cam.getRx().getAngle() + 5);
                 }
             }
         });
@@ -147,8 +147,8 @@ public class GameGui extends Application  implements IObserver {
     public void setCamOffset(final Cam camOffset, final Scene scene) {
         double width = scene.getWidth();
         double height = scene.getHeight();
-        camOffset.t.setX(width/2.0);
-        camOffset.t.setY(height/2.0);
+        camOffset.getT().setX(width/2.0);
+        camOffset.getT().setY(height/2.0);
     }
 
     /**
@@ -175,9 +175,9 @@ public class GameGui extends Application  implements IObserver {
         } else {
             scaleFactor = scaleFactorX;
         }
-        cam.s.setX(scaleFactor);
-        cam.s.setY(scaleFactor);
-        cam.s.setZ(scaleFactor);
+        cam.getS().setX(scaleFactor);
+        cam.getS().setY(scaleFactor);
+        cam.getS().setZ(scaleFactor);
     }
 
     /**
@@ -189,12 +189,12 @@ public class GameGui extends Application  implements IObserver {
         final double pivotX = bounds.getMinX() + bounds.getWidth()/2;
         final double pivotY = bounds.getMinY() + bounds.getHeight()/2;
         final double pivotZ = bounds.getMinZ() + bounds.getDepth()/2;
-        cam.p.setX(pivotX);
-        cam.p.setY(pivotY);
-        cam.p.setZ(pivotZ);
-        cam.ip.setX(-pivotX);
-        cam.ip.setY(-pivotY);
-        cam.ip.setZ(-pivotZ);
+        cam.getP().setX(pivotX);
+        cam.getP().setY(pivotY);
+        cam.getP().setZ(pivotZ);
+        cam.getIp().setX(-pivotX);
+        cam.getIp().setY(-pivotY);
+        cam.getIp().setZ(-pivotZ);
     }
 
     /**
@@ -205,44 +205,44 @@ public class GameGui extends Application  implements IObserver {
         final Bounds bounds = cam.getBoundsInLocal();
         final double pivotX = bounds.getMinX() + bounds.getWidth()/2;
         final double pivotY = bounds.getMinY() + bounds.getHeight()/2;
-        cam.t.setX(-pivotX);
-        cam.t.setY(-pivotY);
+        cam.getT().setX(-pivotX);
+        cam.getT().setY(-pivotY);
     }
 
     /**
      * Reset Cam
      */
     public void resetCam() {
-        cam.t.setX(0.0);
-        cam.t.setY(0.0);
-        cam.t.setZ(0.0);
-        cam.rx.setAngle(27.0);
-        cam.ry.setAngle(-7.0);
-        cam.rz.setAngle(0.0);
-        cam.s.setX(1.25);
-        cam.s.setY(1.25);
-        cam.s.setZ(1.25);
+        cam.getT().setX(0.0);
+        cam.getT().setY(0.0);
+        cam.getT().setZ(0.0);
+        cam.getRx().setAngle(27.0);
+        cam.getRy().setAngle(-7.0);
+        cam.getRz().setAngle(0.0);
+        cam.getS().setX(1.25);
+        cam.getS().setY(1.25);
+        cam.getS().setZ(1.25);
         
-        cam.p.setX(0.0);
-        cam.p.setY(0.0);
-        cam.p.setZ(0.0);
+        cam.getP().setX(0.0);
+        cam.getP().setY(0.0);
+        cam.getP().setZ(0.0);
 
-        cam.ip.setX(0.0);
-        cam.ip.setY(0.0);
-        cam.ip.setZ(0.0);
+        cam.getIp().setX(0.0);
+        cam.getIp().setY(0.0);
+        cam.getIp().setZ(0.0);
 
         final Bounds bounds = cam.getBoundsInLocal();
         final double pivotX = bounds.getMinX() + bounds.getWidth() / 2;
         final double pivotY = bounds.getMinY() + bounds.getHeight() / 2;
         final double pivotZ = bounds.getMinZ() + bounds.getDepth() / 2;
 
-        cam.p.setX(pivotX);
-        cam.p.setY(pivotY);
-        cam.p.setZ(pivotZ);
+        cam.getP().setX(pivotX);
+        cam.getP().setY(pivotY);
+        cam.getP().setZ(pivotZ);
 
-        cam.ip.setX(-pivotX);
-        cam.ip.setY(-pivotY);
-        cam.ip.setZ(-pivotZ);
+        cam.getIp().setX(-pivotX);
+        cam.getIp().setY(-pivotY);
+        cam.getIp().setZ(-pivotZ);
     }
     
     @Override
