@@ -8,14 +8,12 @@ import de.htwg.tictactoe.view.*;
 
 public class TicTacToe {
 	static Scanner scanner;
-	String line = "";
+	String line = ""; 
 	public static void main(String[] args) {
 		Game game = new Game();
 		Controller controller = new Controller(game);
 		TextUI tui = new TextUI(controller);
 		tui.printTUI();
-		GraphicalUI gui = new GraphicalUI(controller);
-		gui.test();
 		 //continue until the user decides to quit
 		boolean continu = true;
 		scanner = new Scanner(System.in);
