@@ -19,7 +19,7 @@ public class TextUI implements IObserver {
 		controller.addObserver(this);
 	}
 
-	public void update() {
+	public void update() { 
 		printTUI();
 	}
 
