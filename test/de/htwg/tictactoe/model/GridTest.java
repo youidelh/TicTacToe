@@ -1,8 +1,12 @@
 package de.htwg.tictactoe.model;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class GridTest {
 	
@@ -33,7 +37,7 @@ public class GridTest {
 	
 	@Test
 	public void testGetCell(){
-		Cell cell = grid.getCell(1, 2);
+		Cell cell = (Cell) grid.getCell(1, 2);
 		assertEquals(1, cell.getRow());
 		assertEquals(2, cell.getColumn());
 		assertEquals("", cell.getValue());

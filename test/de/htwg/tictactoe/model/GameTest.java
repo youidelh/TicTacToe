@@ -1,8 +1,10 @@
 package de.htwg.tictactoe.model;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class GameTest {
 	
@@ -20,7 +22,7 @@ public class GameTest {
 	@Test
 	public void testGetGrid(){
 		Grid[] grids = game.getGrids();
-		assertEquals(3, grids.length);
+		assertEquals(3, grids.length); 
 		 assertTrue(grids[0] instanceof Grid);
 	}
 	

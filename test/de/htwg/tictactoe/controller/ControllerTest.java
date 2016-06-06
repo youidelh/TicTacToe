@@ -1,11 +1,15 @@
 package de.htwg.tictactoe.controller;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.tictactoe.model.Game;
-
-import static org.junit.Assert.*;
 
 public class ControllerTest {
 

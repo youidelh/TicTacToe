@@ -1,13 +1,12 @@
 package de.htwg.tictactoe.model;
 
-import de.htwg.tictactoe.model.Grid;
-
-public class Player {
+public class Player{
 	private String name;
 	private String symbol;
 	
 	private Grid[] grids;
-	GameState gameState;
+	WinStateStrategyTemplate oneGridStrategy;
+	WinStateStrategyTemplate allGridStrategy;
 	
 	
 	/**
@@ -16,11 +15,12 @@ public class Player {
 	 * @param symbol
 	 * @param grids
 	 */
-	public Player(String name, String symbol,Grid[] grids) {
+	public Player(String name, String symbol, Grid[] grids) {
 		this.name = name;
 		this.symbol = symbol;
 		this.grids = grids;
-		gameState = new GameState();
+		oneGridStrategy = new OneDimensionGridStateStrategy();
+		allGridStrategy = new ThreeDimensionGridsStateStrategy();
 	}
 	/**
 	 * sets a move and returns if a player won
@@ -29,7 +29,7 @@ public class Player {
 	 * @param grid
 	 * @return
 	 */
-	public boolean move(int row, int column, int grid){
+	public boolean setSymbol(int row, int column, int grid){
 		if(grids[grid].setCell(row, column, symbol)){
 			return playerWon(row, column, grid);
 		}
@@ -38,10 +38,11 @@ public class Player {
 	
 	
 	/**
-	 * reset the gameState
+	 * reset the oneGridStrategy
 	 */
 	public void resetPlayer(){
-		gameState = new GameState();
+		oneGridStrategy = new OneDimensionGridStateStrategy();
+		allGridStrategy = new ThreeDimensionGridsStateStrategy();
 	}
 	/**
 	 * checks if a player won 
@@ -51,7 +52,7 @@ public class Player {
 	 * @return
 	 */
 	private boolean playerWon(int row, int column, int grid){
-		return gameState.checkForWin(row, column, grid);
+		return oneGridStrategy.checkForWin(row, column, grid) || allGridStrategy.checkForWin(row, column, grid);
 	}
 	
 	public String getName() {

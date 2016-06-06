@@ -30,6 +30,9 @@ public final class Messages {
 	
 	public static final String PLAYER_NAME = "please enter players name again";
 	
+	public static final String MOVEMENT = "To move the Grids : D to go right, A to go left, W to go up, S to go down\n\n";
+
+	
 	private Messages() {
 	}
 	

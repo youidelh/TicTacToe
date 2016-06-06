@@ -89,7 +89,7 @@ public class Controller extends Observable {
 				setStatusMessage(Messages.CELL_IS_SET);
 				notifyObservers();
 		}else{
-			won[playerIndex] = players[playerIndex].move(row, column, grid);
+			won[playerIndex] = players[playerIndex].setSymbol(row, column, grid);
 			int nextIndex = playerIndex == 0 ? 1 : 0;
 			setStatusMessage(Messages.playerMoveToString(players[playerIndex].getName(), row, column, grid) +
 					players[nextIndex].getName() + Messages.NEXT);

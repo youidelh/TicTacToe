@@ -3,6 +3,7 @@ package de.htwg.tictactoe.model;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class PlayerTest {
@@ -34,18 +35,18 @@ public class PlayerTest {
 
 	@Test 
 	public void testMove(){
-		boolean move = player.move(1, 1, 0);
+		boolean move = player.setSymbol(1, 1, 0);
 		assertTrue(grids[0].cellIsSet(1, 1));
 		assertFalse(move);
-		assertFalse(player.move(1, 3, 0));
+		assertFalse(player.setSymbol(1, 3, 0));
 	}
 	@Test 
 	public void testResetPlayer(){
-		player.move(1, 1, 0);
-		player.move(1, 1, 1);
-		assertTrue(player.move(1, 1, 2));
+		player.setSymbol(1, 1, 0);
+		player.setSymbol(1, 1, 1);
+		assertTrue(player.setSymbol(1, 1, 2));
 		player.resetPlayer();
-		assertFalse(player.move(1, 1, 2));
+		assertFalse(player.setSymbol(1, 1, 2));
 	}
 
 }
