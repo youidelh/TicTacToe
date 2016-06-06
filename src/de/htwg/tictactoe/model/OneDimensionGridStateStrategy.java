@@ -52,7 +52,7 @@ public class OneDimensionGridStateStrategy extends WinStateStrategyTemplate{
 		}
 		return false;
 	}
-
+	@Override
 	public boolean checkDiagonal(int row, int column, int grid){
 		if(row == column && ++diagGridScore.get(grid)[0] == NUMBER_TO_WIN){
 			return true;

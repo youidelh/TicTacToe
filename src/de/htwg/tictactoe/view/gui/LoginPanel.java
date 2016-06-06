@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import de.htwg.tictactoe.controller.Controller;
 import javafx.application.Application;
 
-public class loginPanel extends JPanel implements ActionListener{
+public class LoginPanel extends JPanel implements ActionListener{
 
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class loginPanel extends JPanel implements ActionListener{
 	Controller controller ;
 	JLabel user1;
 	JLabel user2;
-	public loginPanel(Controller controller) {
+	public LoginPanel(Controller controller) {
 		start  = new JButton("start");
 		player1 = new JTextField();
 		user1 = new JLabel("First Player");
@@ -48,10 +48,12 @@ public class loginPanel extends JPanel implements ActionListener{
 		add(panel);
 		
 	}
+	
+	@Override	
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource(); 
 		if(source == start){
-			if(!player1.getText().trim().equals("") && !player2.getText().trim().equals("")){
+			if(!"".equals(player1.getText().trim()) && !"".equals(player2.getText().trim())){
 				controller.setPlayers(player1.getText(), player2.getText());
 				controller.removeAllObservers();
 				GameGui sw = new GameGui();

@@ -18,7 +18,7 @@ public class GridPanel extends Group {
     public GridPanel(final Controller controller, double size, double shade, int id) {
         getTransforms().addAll(rz, ry, rx);
         this.controller = controller;
-        
+         
         cells = new CellPanel[3][3];
         double width = 0.5;
         double col = 0.1;
@@ -27,13 +27,12 @@ public class GridPanel extends Group {
             for (int column = 0; column < cells[row].length; column++) {
             	cells[row][column] = new CellPanel(controller.getGame().getGrids()[id].getCell(row, column),
         				row, column, size / 3, id, width*size/3, height*size,
-        				color.deriveColor(0.0, 1.0, (1 - 0.3*col), 1.0));
+        				color.deriveColor(0.0, 1.0, 1 - 0.3*col, 1.0));
 				height -= 0.335;
 				final CellPanel cell = cells[row][column];
 				
 				col+=0.2;
-				cell.setOnMouseClicked(new EventHandler<MouseEvent>()
-		        {
+				cell.setOnMouseClicked(new EventHandler<MouseEvent>(){
 		            public void handle(MouseEvent t) {
 		            	String[] data = cell.getId().split(" ");
 		            	if(!controller.getWin(0) && !controller.getWin(1)){	
@@ -54,7 +53,7 @@ public class GridPanel extends Group {
         for (int row = 0; row < cells.length; row++) {
             for (int column = 0; column < cells[row].length; column++) {
                 double col = 0.1;
-            	cells[row][column].resetCell(color.deriveColor(0.0, 1.0, (1 - 0.3*col), 1.0));
+            	cells[row][column].resetCell(color.deriveColor(0.0, 1.0, 1 - 0.3*col, 1.0));
 				col+=0.2;
             }
         }	

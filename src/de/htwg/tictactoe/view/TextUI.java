@@ -3,6 +3,8 @@ package de.htwg.tictactoe.view;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
+
 import de.htwg.tictactoe.controller.Controller;
 import de.htwg.util.observer.IObserver;
 
@@ -10,13 +12,13 @@ public class TextUI implements IObserver {
 
 	private Controller controller;
 
+    private Logger LOGGER = Logger.getLogger("de.htwg.tictactoe.aview.tui");
 
 	public TextUI(Controller controller) {
 		this.controller = controller;
 		controller.addObserver(this);
 	}
 
-	@Override
 	public void update() {
 		printTUI();
 	}
@@ -57,8 +59,8 @@ public class TextUI implements IObserver {
 	}
 
 	public void printTUI() {
-		System.out.println(controller.getGameString());
-		System.out.println(controller.getStatus());
+		LOGGER.info(controller.getGameString());
+		LOGGER.info(controller.getStatus());
 	}
 }
 

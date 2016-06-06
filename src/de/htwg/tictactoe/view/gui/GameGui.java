@@ -1,35 +1,4 @@
 package de.htwg.tictactoe.view.gui;
-/*
- * Copyright (c) 2010, 2014, Oracle and/or its affiliates. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *
- *   - Redistributions in binary form must reproduce the above copyright
- *     notice, this list of conditions and the following disclaimer in the
- *     documentation and/or other materials provided with the distribution.
- *
- *   - Neither the name of Oracle or the names of its
- *     contributors may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */ 
-
 
 import de.htwg.tictactoe.controller.Controller;
 import de.htwg.tictactoe.model.Messages;
@@ -55,19 +24,19 @@ public class GameGui extends Application  implements IObserver {
     double mousePosX;
     double mousePosY;
     double mouseOldX;
-    double mouseOldY;
+    double mouseOldY; 
     double mouseDeltaX;
     double mouseDeltaY;
     final Cam camOffset = new Cam();
     final Cam cam = new Cam();
-    public static Controller controller;
+    private static Controller controller;
     final Shear shear = new Shear();
-    public static StatusPanel statusPanel;
-    private final int GRIDS_SIZE = 3;
-    public GridPanel[] grids ;
+    public StatusPanel statusPanel;
+    private static final int GRIDS_SIZE = 3;
+    private GridPanel[] grids ;
     Scene scene;
     Stage stage;
-    Group Appgroup;
+    Group appGroup;
     public GameGui() {
     }
 
@@ -76,7 +45,7 @@ public class GameGui extends Application  implements IObserver {
     }
     public void init(Stage stage){
     	this.stage = stage;
-        Appgroup = new Group();
+    	appGroup = new Group();
         statusPanel = new StatusPanel();
         statusPanel.setText(Messages.MOVEMENT+controller.getStatus());
     }
@@ -86,9 +55,9 @@ public class GameGui extends Application  implements IObserver {
 		controller.addObserver(this);
         stage.setTitle("tictactoe 3*3");
         camOffset.getChildren().add(cam);
-        Appgroup.getChildren().addAll(camOffset, statusPanel);
+        appGroup.getChildren().addAll(camOffset, statusPanel);
         resetCam();
-        scene = new Scene(Appgroup, 800, 600, true);
+        scene = new Scene(appGroup, 800, 600, true);
         scene.setFill(new RadialGradient(225, 0.85, 300, 300, 500, false,
                                          CycleMethod.NO_CYCLE, new Stop[]
                                          { new Stop(0f, Color.BLUE),
@@ -123,7 +92,6 @@ public class GameGui extends Application  implements IObserver {
                 }
                 if(KeyCode.S.equals(ke.getCode()) && cam.rx.getAngle() < 47){
                     cam.rx.setAngle(cam.rx.getAngle() + 5);
-                    System.out.println(cam.rx.getAngle());
                 }
             }
         });
@@ -165,7 +133,6 @@ public class GameGui extends Application  implements IObserver {
      */
     public void frameCam(final Stage stage, final Scene scene) {
         setCamOffset(camOffset, scene);
-        // cam.resetTSP();
         setCamPivot(cam);
         setCamTranslate(cam);
         setCamScale(cam, scene);
@@ -198,10 +165,10 @@ public class GameGui extends Application  implements IObserver {
         double scaleFactorY = 1.0;
         double scaleFactorX = 1.0;
         if (bounds.getWidth() > 0.0001) {
-            scaleFactorX = width / bounds.getWidth(); // / 2.0;
+            scaleFactorX = width / bounds.getWidth(); 
         }
         if (bounds.getHeight() > 0.0001) {
-            scaleFactorY = height / bounds.getHeight(); //  / 1.5;
+            scaleFactorY = height / bounds.getHeight();
         }
         if (scaleFactorX > scaleFactorY) {
             scaleFactor = scaleFactorY;
@@ -278,6 +245,7 @@ public class GameGui extends Application  implements IObserver {
         cam.ip.setZ(-pivotZ);
     }
     
+    @Override
 	public void update() {
 		cam.getChildren().addAll(setGrids());
 		statusPanel.setText(Messages.MOVEMENT+controller.getStatus());
