@@ -3,14 +3,14 @@ package de.htwg.tictactoe.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OneDimensionGridStateStrategy extends WinStateStrategyTemplate{
+public class OneDimensionGridsStateStrategy extends WinStateStrategyTemplate{
 
 
 	private List<int[]> rowGridScore;
 	private List<int[]> colsGridScore;
 	private List<int[]> diagGridScore;
 	
-	public OneDimensionGridStateStrategy() {
+	public OneDimensionGridsStateStrategy() {
 		initRowsArrays();
 		initColumnsArrays();
 		initDiagArrays();
@@ -52,7 +52,7 @@ public class OneDimensionGridStateStrategy extends WinStateStrategyTemplate{
 		}
 		return false;
 	}
-	@Override
+
 	public boolean checkDiagonal(int row, int column, int grid){
 		if(row == column && ++diagGridScore.get(grid)[0] == NUMBER_TO_WIN){
 			return true;

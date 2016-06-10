@@ -32,6 +32,9 @@ public final class Messages {
 	
 	public static final String MOVEMENT = "To move the Grids : D to go right, A to go left, W to go up, S to go down\n\n";
 
+
+	public static final String USER_ERROR = "You did not give both users name try again";
+
 	
 	private Messages() {
 	}

@@ -34,7 +34,7 @@ public class PlayerTest {
 	}
 
 	@Test 
-	public void testMove(){
+	public void testSetSymbol(){
 		boolean move = player.setSymbol(1, 1, 0);
 		assertTrue(grids[0].cellIsSet(1, 1));
 		assertFalse(move);
@@ -47,6 +47,13 @@ public class PlayerTest {
 		assertTrue(player.setSymbol(1, 1, 2));
 		player.resetPlayer();
 		assertFalse(player.setSymbol(1, 1, 2));
+	}
+	
+	@Test
+	public void testPlayerWon(){
+		player.setSymbol(0, 0, 0);
+		player.setSymbol(1, 0, 0);
+		player.setSymbol(2, 0, 0);
 	}
 
 }

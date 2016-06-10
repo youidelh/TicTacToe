@@ -9,7 +9,7 @@ import de.htwg.tictactoe.model.Game;
 import de.htwg.tictactoe.view.*;
 import de.htwg.tictactoe.view.gui.TicTacToeGUI;
 
-public class TicTacToe {
+public class TicTacToe { 
 	static Scanner scanner;
 	String line = ""; 
 	public static void main(String[] args) {

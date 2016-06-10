@@ -1,22 +1,22 @@
 package de.htwg.tictactoe.model;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class ThreeDimensionGridsStateTest {
+public class ThreeDimensionGridsStateStrategyTest {
 
 	WinStateStrategyTemplate state;
 	
 	/**
 	 * set up state 
-	 * @throws Exception
+	 * @throws Exception 
 	 */
 	@Before
     public void setUp() throws Exception {
-        state = new ThreeDimensionGridsStateStrategy();
+        state = FactoryProducer.getFactory("threeD").getInstance(); ;
     }
 	
 	@Test
@@ -74,6 +74,12 @@ public class ThreeDimensionGridsStateTest {
 		// row != column
 		assertFalse(state.checkForWin(0, 2, 2));
 		assertTrue(state.checkForWin(2, 0, 0));	
+	}
+	@Test
+	public void testNullObject(){
+		FactoryProducer fc = new FactoryProducer();
+		AbstractWinStateStrategyFactory state1 = FactoryProducer.getFactory("treeD");
+		assertNull(state1);
 	}
 	
 }

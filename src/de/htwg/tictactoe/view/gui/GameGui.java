@@ -4,6 +4,7 @@ import de.htwg.tictactoe.controller.Controller;
 import de.htwg.tictactoe.model.Messages;
 import de.htwg.util.observer.IObserver;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.scene.DepthTest;
@@ -108,7 +109,7 @@ public class GameGui extends Application  implements IObserver {
         gridsGroup.setDepthTest(DepthTest.ENABLE);
 
         grids = new GridPanel[GRIDS_SIZE];
-        int position = 0 ;
+        int position = -30 ;
 
         for (int i = 0; i < GRIDS_SIZE; i++) {
         	grids[i] = new GridPanel(controller, 1.0, 1.0, i);
@@ -118,9 +119,9 @@ public class GameGui extends Application  implements IObserver {
         	grids[i].setScaleX(50);
         	grids[i].setScaleZ(50);
         	grids[i].setScaleY(5);
-        	position-= 15;
+        	position+= 15;
 		}
-        gridsGroup.getChildren().addAll(grids[0], grids[1], grids[2]);
+        gridsGroup.getChildren().addAll(grids[2], grids[1], grids[0]);
         gridsGroup.setScaleX(2.5);
         gridsGroup.setScaleY(2.5);
         gridsGroup.setScaleZ(2.5);
@@ -162,13 +163,13 @@ public class GameGui extends Application  implements IObserver {
         double height = scene.getHeight();
 
         double scaleFactor = 1.0;
-        double scaleFactorY = 1.0;
+        double scaleFactorY = 1.0; 
         double scaleFactorX = 1.0;
         if (bounds.getWidth() > 0.0001) {
             scaleFactorX = width / bounds.getWidth(); 
         }
         if (bounds.getHeight() > 0.0001) {
-            scaleFactorY = height / bounds.getHeight();
+        	scaleFactorY = height / bounds.getHeight();
         }
         if (scaleFactorX > scaleFactorY) {
             scaleFactor = scaleFactorY;
@@ -217,7 +218,7 @@ public class GameGui extends Application  implements IObserver {
         cam.getT().setY(0.0);
         cam.getT().setZ(0.0);
         cam.getRx().setAngle(27.0);
-        cam.getRy().setAngle(-7.0);
+        cam.getRy().setAngle(-92.0);
         cam.getRz().setAngle(0.0);
         cam.getS().setX(1.25);
         cam.getS().setY(1.25);
@@ -245,9 +246,13 @@ public class GameGui extends Application  implements IObserver {
         cam.getIp().setZ(-pivotZ);
     }
     
-    @Override
+    //@Override
 	public void update() {
-		cam.getChildren().addAll(setGrids());
-		statusPanel.setText(Messages.MOVEMENT+controller.getStatus());
+		Platform.runLater(new Runnable() {
+            public void run() {
+        		cam.getChildren().addAll(setGrids());
+        		statusPanel.setText(Messages.MOVEMENT+controller.getStatus());
+            }
+        });
 	}
 }

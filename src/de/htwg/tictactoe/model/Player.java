@@ -3,7 +3,6 @@ package de.htwg.tictactoe.model;
 public class Player{
 	private String name;
 	private String symbol;
-	
 	private Grid[] grids;
 	WinStateStrategyTemplate oneGridStrategy;
 	WinStateStrategyTemplate allGridStrategy;
@@ -12,15 +11,15 @@ public class Player{
 	/**
 	 * Constructor
 	 * @param name
-	 * @param symbol
+	 * @param symbol 
 	 * @param grids
 	 */
 	public Player(String name, String symbol, Grid[] grids) {
 		this.name = name;
 		this.symbol = symbol;
 		this.grids = grids;
-		oneGridStrategy = new OneDimensionGridStateStrategy();
-		allGridStrategy = new ThreeDimensionGridsStateStrategy();
+		oneGridStrategy = FactoryProducer.getFactory("oneD").getInstance();
+		allGridStrategy = FactoryProducer.getFactory("threeD").getInstance(); 
 	}
 	/**
 	 * sets a move and returns if a player won
@@ -41,8 +40,8 @@ public class Player{
 	 * reset the oneGridStrategy
 	 */
 	public void resetPlayer(){
-		oneGridStrategy = new OneDimensionGridStateStrategy();
-		allGridStrategy = new ThreeDimensionGridsStateStrategy();
+		oneGridStrategy = FactoryProducer.getFactory("oneD").getInstance();
+		allGridStrategy = FactoryProducer.getFactory("threeD").getInstance();  
 	}
 	/**
 	 * checks if a player won 
@@ -62,5 +61,4 @@ public class Player{
 	public String getSymbol() {
 		return symbol;
 	}	
-
 }

@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-public class OneDimensionGridStateTest {
+public class OneDimensionGridsStateStrategyTest {
 
 	WinStateStrategyTemplate state;
 	
@@ -16,7 +16,7 @@ public class OneDimensionGridStateTest {
 	 */
 	@Before
     public void setUp() throws Exception {
-        state = new OneDimensionGridStateStrategy();
+        state = FactoryProducer.getFactory("oneD").getInstance();
     }
 	
 	@Test
