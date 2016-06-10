@@ -77,7 +77,6 @@ public class ThreeDimensionGridsStateStrategyTest {
 	}
 	@Test
 	public void testNullObject(){
-		FactoryProducer fc = new FactoryProducer();
 		AbstractWinStateStrategyFactory state1 = FactoryProducer.getFactory("treeD");
 		assertNull(state1);
 	}

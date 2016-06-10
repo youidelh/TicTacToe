@@ -13,7 +13,7 @@ public class OneDimensionGridsStateStrategy extends WinStateStrategyTemplate{
 	public OneDimensionGridsStateStrategy() {
 		initRowsArrays();
 		initColumnsArrays();
-		initDiagArrays();
+		initDiagArrays(); 
 	}
 	private void initRowsArrays() {
 		rowGridScore = new ArrayList<int[]>(3);
@@ -52,7 +52,7 @@ public class OneDimensionGridsStateStrategy extends WinStateStrategyTemplate{
 		}
 		return false;
 	}
-
+	@Override
 	public boolean checkDiagonal(int row, int column, int grid){
 		if(row == column && ++diagGridScore.get(grid)[0] == NUMBER_TO_WIN){
 			return true;

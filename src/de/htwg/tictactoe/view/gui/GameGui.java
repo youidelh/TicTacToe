@@ -1,4 +1,4 @@
-package de.htwg.tictactoe.view.gui;
+package de.htwg.tictactoe.view.gui; 
 
 import de.htwg.tictactoe.controller.Controller;
 import de.htwg.tictactoe.model.Messages;
@@ -32,7 +32,7 @@ public class GameGui extends Application  implements IObserver {
     final Cam cam = new Cam();
     private static Controller controller;
     final Shear shear = new Shear();
-    public StatusPanel statusPanel;
+    private static StatusPanel statusPanel;
     private static final int GRIDS_SIZE = 3;
     private GridPanel[] grids ;
     Scene scene;
@@ -47,8 +47,8 @@ public class GameGui extends Application  implements IObserver {
     public void init(Stage stage){
     	this.stage = stage;
     	appGroup = new Group();
-        statusPanel = new StatusPanel();
-        statusPanel.setText(Messages.MOVEMENT+controller.getStatus());
+    	GameGui.statusPanel = new StatusPanel();
+    	GameGui.statusPanel.setText(Messages.MOVEMENT+controller.getStatus());
     }
     @Override
     public void start(final Stage stage) {
@@ -246,9 +246,10 @@ public class GameGui extends Application  implements IObserver {
         cam.getIp().setZ(-pivotZ);
     }
     
-    //@Override
+    @Override
 	public void update() {
 		Platform.runLater(new Runnable() {
+			@Override
             public void run() {
         		cam.getChildren().addAll(setGrids());
         		statusPanel.setText(Messages.MOVEMENT+controller.getStatus());

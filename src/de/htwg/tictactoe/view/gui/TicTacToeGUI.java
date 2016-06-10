@@ -36,7 +36,7 @@ public class TicTacToeGUI extends JFrame implements ActionListener{
 	JLabel user1;
 	JLabel user2;
 	
-	@Inject
+	@Inject 
     public TicTacToeGUI(Controller controller) {
 		pane = getContentPane();
 		this.controller = controller;
@@ -74,7 +74,7 @@ public class TicTacToeGUI extends JFrame implements ActionListener{
 		return mainPanel;
 	}
 
-	//@Override	
+	@Override	
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource(); 
 		if(source == start){
