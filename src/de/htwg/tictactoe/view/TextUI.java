@@ -12,7 +12,7 @@ public class TextUI implements IObserver {
 
 	private Controller controller;
 
-    private static Logger LOGGER = Logger.getLogger("de.htwg.tictactoe.aview.tui");
+    private static final Logger LOGGER = Logger.getLogger("de.htwg.tictactoe.aview.tui");
 
 	public TextUI(Controller controller) {
 		this.controller = controller;

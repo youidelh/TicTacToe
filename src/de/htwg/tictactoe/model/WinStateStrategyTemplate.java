@@ -8,7 +8,7 @@ package de.htwg.tictactoe.model;
  */
 public abstract class WinStateStrategyTemplate {
 
-	protected int NUMBER_TO_WIN = 3; 
+	protected final int NUMBER_TO_WIN = 3; 
 	
 	public abstract boolean checkRow(int row, int grid);
 	

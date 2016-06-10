@@ -249,7 +249,7 @@ public class GameGui extends Application  implements IObserver {
     @Override
 	public void update() {
 		Platform.runLater(new Runnable() {
-			@Override
+			@Override 
             public void run() {
         		cam.getChildren().addAll(setGrids());
         		statusPanel.setText(Messages.MOVEMENT+controller.getStatus());
