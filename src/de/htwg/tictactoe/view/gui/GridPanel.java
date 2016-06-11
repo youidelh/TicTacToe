@@ -29,18 +29,8 @@ public class GridPanel extends Group {
         				row, column, size / 3, id, width*size/3, height*size,
         				color.deriveColor(0.0, 1.0, 1 - 0.3*col, 1.0));
 				height -= 0.335;
-				final CellPanel cell = cells[row][column];
-				
 				col+=0.2;
-				cell.setOnMouseClicked(
-					new EventHandler<MouseEvent>(){
-			            public void handle(MouseEvent t) {
-			            	String[] data = cell.getId().split(" ");
-			            	if(!controller.getWin(0) && !controller.getWin(1)){	
-			            		controller.setValue(Integer.parseInt(data[0]),Integer.parseInt(data[1]), Integer.parseInt(data[2]));
-			            	}
-			            }
-					});
+				setOnClickListener(cells[row][column]);
             }
 			width-= 1.001;
 			height = 0.335; 
@@ -49,8 +39,19 @@ public class GridPanel extends Group {
         getChildren().addAll(cells[0][0], cells[0][1], cells[0][2]
         		, cells[1][0], cells[1][1], cells[1][2], cells[2][0],cells[2][1], cells[2][2]);    
     }
+    public void setOnClickListener(final CellPanel cell){
+    	cell.setOnMouseClicked(
+			new EventHandler<MouseEvent>(){
+	            public void handle(MouseEvent t) {
+	            	String[] data = cell.getId().split(" ");
+	            	if(!controller.getWin(0) && !controller.getWin(1)){	
+	            		controller.setValue(Integer.parseInt(data[0]),Integer.parseInt(data[1]), Integer.parseInt(data[2]));
+	            	}
+	            }
+			});
+    }
     
-    public void resetGrid(){
+    public void resetGrid(){ 
         for (int row = 0; row < cells.length; row++) {
             for (int column = 0; column < cells[row].length; column++) {
                 double col = 0.1;
