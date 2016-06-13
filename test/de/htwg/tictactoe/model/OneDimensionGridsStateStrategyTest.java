@@ -16,7 +16,7 @@ public class OneDimensionGridsStateStrategyTest {
 	 */
 	@Before
     public void setUp() throws Exception {
-        state = FactoryProducer.getFactory("oneD").getInstance();
+		state = FactoryProducer.getOneDimensionFactory().getInstance();
     }
 	
 	@Test

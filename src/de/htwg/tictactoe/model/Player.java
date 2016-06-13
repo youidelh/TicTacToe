@@ -17,9 +17,9 @@ public class Player{
 	public Player(String name, String symbol, Grid[] grids) {
 		this.name = name;
 		this.symbol = symbol;
-		this.grids = grids;
-		oneGridStrategy = FactoryProducer.getFactory("oneD").getInstance();
-		allGridStrategy = FactoryProducer.getFactory("threeD").getInstance(); 
+		this.grids = grids; 
+		oneGridStrategy = FactoryProducer.getOneDimensionFactory().getInstance();
+		allGridStrategy = FactoryProducer.getThreeDimensionFactory().getInstance(); 
 	}
 	/**
 	 * sets a move and returns if a player won
@@ -40,8 +40,8 @@ public class Player{
 	 * reset the oneGridStrategy
 	 */
 	public void resetPlayer(){
-		oneGridStrategy = FactoryProducer.getFactory("oneD").getInstance();
-		allGridStrategy = FactoryProducer.getFactory("threeD").getInstance();  
+		oneGridStrategy = FactoryProducer.getOneDimensionFactory().getInstance();
+		allGridStrategy = FactoryProducer.getThreeDimensionFactory().getInstance(); 
 	}
 	/**
 	 * checks if a player won 

@@ -16,7 +16,7 @@ public class ThreeDimensionGridsStateStrategyTest {
 	 */
 	@Before
     public void setUp() throws Exception {
-        state = FactoryProducer.getFactory("threeD").getInstance(); ;
+		state = FactoryProducer.getThreeDimensionFactory().getInstance(); 
     }
 	
 	@Test
@@ -77,7 +77,7 @@ public class ThreeDimensionGridsStateStrategyTest {
 	}
 	@Test
 	public void testNullObject(){
-		AbstractWinStateStrategyFactory state1 = FactoryProducer.getFactory("treeD");
+		AbstractWinStateStrategyFactory state1 = FactoryProducer.getThreeDimensionFactory(); 
 		assertNull(state1);
 	}
 	
