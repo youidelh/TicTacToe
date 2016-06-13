@@ -75,10 +75,5 @@ public class ThreeDimensionGridsStateStrategyTest {
 		assertFalse(state.checkForWin(0, 2, 2));
 		assertTrue(state.checkForWin(2, 0, 0));	
 	}
-	@Test
-	public void testNullObject(){
-		AbstractWinStateStrategyFactory state1 = FactoryProducer.getThreeDimensionFactory(); 
-		assertNull(state1);
-	}
 	
 }
