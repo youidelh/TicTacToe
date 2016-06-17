@@ -1,6 +1,6 @@
 package de.htwg.tictactoe.model;
 
-public class Player{
+public class Player implements IPlayer{
 	private String name;
 	private String symbol;
 	private Grid[] grids;
