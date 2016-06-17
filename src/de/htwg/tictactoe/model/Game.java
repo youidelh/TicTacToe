@@ -1,6 +1,6 @@
 package de.htwg.tictactoe.model;
 
-public class Game {
+public class Game implements IGame {
 	
 	Grid[] grids;
 	private int size = 3;
