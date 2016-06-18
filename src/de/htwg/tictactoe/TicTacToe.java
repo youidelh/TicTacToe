@@ -9,6 +9,11 @@ import de.htwg.tictactoe.model.Game;
 import de.htwg.tictactoe.view.*;
 import de.htwg.tictactoe.view.gui.TicTacToeGUI;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class TicTacToe { 
 	static Scanner scanner;
 	String line = ""; 

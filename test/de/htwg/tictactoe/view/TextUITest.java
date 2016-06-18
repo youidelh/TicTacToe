@@ -9,6 +9,11 @@ import org.junit.Test;
 import de.htwg.tictactoe.controller.Controller;
 import de.htwg.tictactoe.model.Game;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class TextUITest {
 
     private Controller controller;

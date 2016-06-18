@@ -20,6 +20,11 @@ import de.htwg.tictactoe.controller.Controller;
 import de.htwg.tictactoe.model.Messages;
 import javafx.application.Application;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class TicTacToeGUI extends JFrame implements ActionListener{
 
 	
@@ -40,7 +45,7 @@ public class TicTacToeGUI extends JFrame implements ActionListener{
     public TicTacToeGUI(Controller controller) {
 		pane = getContentPane();
 		this.controller = controller;
-        setTitle(Messages.WELCOME_MESSAGE); 
+        setTitle(Messages.TITLE); 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(DEFAULT_X, DEFAULT_Y)); 

@@ -7,6 +7,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class GridPanel extends Group {
     final Rotate rx = new Rotate(0, Rotate.X_AXIS);
     final Rotate ry = new Rotate(0, Rotate.Y_AXIS);

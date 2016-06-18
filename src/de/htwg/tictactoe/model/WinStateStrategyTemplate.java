@@ -5,6 +5,7 @@ package de.htwg.tictactoe.model;
  * Patterns: Strategy and TemplateMethod
  * This class is the abstract strategy for the strategy pattern.
  * At the same time it is a template for the implementation of a strategy
+ * @author Youssef Idelhoussain
  */
 public abstract class WinStateStrategyTemplate {
 

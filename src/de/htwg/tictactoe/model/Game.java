@@ -1,5 +1,10 @@
 package de.htwg.tictactoe.model;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class Game implements IGame {
 	
 	Grid[] grids;

@@ -3,7 +3,11 @@ package de.htwg.tictactoe.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class ThreeDimensionGridsStateStrategy extends WinStateStrategyTemplate{
 
 

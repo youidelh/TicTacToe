@@ -3,6 +3,11 @@ package de.htwg.util.observer;
 import java.util.Iterator;
 import java.util.Vector;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class Observable  {
 
 	protected Vector<IObserver> subscribers = new Vector<IObserver>(2);

@@ -20,6 +20,11 @@ import javafx.scene.paint.Stop;
 import javafx.scene.transform.Shear;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class GameGui extends Application  implements IObserver {
 
     double mousePosX;
@@ -54,7 +59,7 @@ public class GameGui extends Application  implements IObserver {
     public void start(final Stage stage) {
     	init(stage);
 		controller.addObserver(this);
-        stage.setTitle("tictactoe 3*3");
+        stage.setTitle(Messages.TITLE); 
         camOffset.getChildren().add(cam);
         appGroup.getChildren().addAll(camOffset, statusPanel);
         resetCam();

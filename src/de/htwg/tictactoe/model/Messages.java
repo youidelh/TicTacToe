@@ -1,5 +1,10 @@
 package de.htwg.tictactoe.model;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public final class Messages {
 	
 	public static final String PLEASE_MESSAGES = "please enter the two players name with - between then (don't forget no spacing)";
@@ -35,6 +40,7 @@ public final class Messages {
 
 	public static final String USER_ERROR = "You did not give both users name try again";
 
+	public static final String TITLE = "TicTacToe 3D";
 	
 	private Messages() {
 	}

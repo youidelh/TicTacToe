@@ -8,11 +8,16 @@ import org.apache.log4j.Logger;
 import de.htwg.tictactoe.controller.Controller;
 import de.htwg.util.observer.IObserver;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class TextUI implements IObserver {
 
 	private Controller controller;
 
-    private static final Logger LOGGER = Logger.getLogger("de.htwg.tictactoe.aview.tui");
+    private static final Logger LOGGER = Logger.getLogger("de.htwg.tictactoe.view.tui");
 
 	public TextUI(Controller controller) {
 		this.controller = controller;

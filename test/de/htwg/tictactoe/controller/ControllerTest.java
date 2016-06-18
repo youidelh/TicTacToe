@@ -11,6 +11,11 @@ import org.junit.Test;
 
 import de.htwg.tictactoe.model.Game;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class ControllerTest {
 
 	Controller controller;

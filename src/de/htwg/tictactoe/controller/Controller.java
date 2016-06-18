@@ -1,10 +1,16 @@
 package de.htwg.tictactoe.controller;
 
 import de.htwg.tictactoe.model.Game;
+
 import de.htwg.tictactoe.model.Messages;
 import de.htwg.tictactoe.model.Player;
 import de.htwg.util.observer.Observable;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class Controller extends Observable {
 
 	private String statusMessage = Messages.WELCOME_MESSAGE;

@@ -4,6 +4,11 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class StatusPanel extends Group{
 
 	private final Label statusLabel = new Label("");

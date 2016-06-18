@@ -6,6 +6,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class PlayerTest {
 	
 	Player player;

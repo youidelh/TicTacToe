@@ -1,5 +1,10 @@
 package de.htwg.tictactoe.model;
 
+/**
+ * 
+ * @author Youssef Idelhoussain
+ *
+ */
 public class Player implements IPlayer{
 	private String name;
 	private String symbol;
