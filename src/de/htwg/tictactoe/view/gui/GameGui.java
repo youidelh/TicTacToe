@@ -229,18 +229,7 @@ public class GameGui extends Application  implements IObserver {
         cam.getS().setY(1.25);
         cam.getS().setZ(1.25);
         
-        final Bounds bounds = cam.getBoundsInLocal();
-        final double pivotX = bounds.getMinX() + bounds.getWidth() / 2;
-        final double pivotY = bounds.getMinY() + bounds.getHeight() / 2;
-        final double pivotZ = bounds.getMinZ() + bounds.getDepth() / 2;
-
-        cam.getP().setX(pivotX);
-        cam.getP().setY(pivotY);
-        cam.getP().setZ(pivotZ);
-
-        cam.getIp().setX(-pivotX);
-        cam.getIp().setY(-pivotY);
-        cam.getIp().setZ(-pivotZ);
+        setCamPivot(cam);
     }
     
     @Override
