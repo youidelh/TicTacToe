@@ -1,7 +1,7 @@
 package de.htwg.tictactoe.view.gui; 
 
-import de.htwg.tictactoe.controller.Controller;
-import de.htwg.tictactoe.model.Messages;
+import de.htwg.tictactoe.controller.IController;
+import de.htwg.tictactoe.model.impl.Messages;
 import de.htwg.util.observer.IObserver;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -35,7 +35,7 @@ public class GameGui extends Application  implements IObserver {
     double mouseDeltaY;
     final Cam camOffset = new Cam();
     final Cam cam = new Cam();
-    private static Controller controller;
+    private static IController controller;
     final Shear shear = new Shear();
     private static StatusPanel statusPanel;
     private static final int GRIDS_SIZE = 3;
@@ -46,7 +46,7 @@ public class GameGui extends Application  implements IObserver {
     public GameGui() {
     }
 
-    public void setController(Controller controller){
+    public void setController(IController controller){
  	   GameGui.controller = controller;
     }
     public void init(Stage stage){

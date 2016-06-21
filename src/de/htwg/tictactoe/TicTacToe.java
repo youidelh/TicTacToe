@@ -4,28 +4,28 @@ import java.util.Scanner;
 
 import org.apache.log4j.PropertyConfigurator;
 
-import de.htwg.tictactoe.controller.Controller;
-import de.htwg.tictactoe.model.Game;
-import de.htwg.tictactoe.view.*;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import de.htwg.tictactoe.view.TextUI;
 import de.htwg.tictactoe.view.gui.TicTacToeGUI;
 
-/**
- * 
- * @author Youssef Idelhoussain
- *
- */
 public class TicTacToe { 
 	static Scanner scanner;
 	String line = ""; 
+	
 	public static void main(String[] args) {
 		
 		// Set up logging through log4j
         PropertyConfigurator.configure("log4j.properties");
 		
-		Game game = new Game();
-		Controller controller = new Controller(game);
-		TextUI tui = new TextUI(controller);
-		new TicTacToeGUI(controller);
+		// Set up Google Guice Dependency Injector
+		Injector injector = Guice.createInjector(new TicTacToeModule());
+		
+		TextUI tui = injector.getInstance(TextUI.class);
+		
+		injector.getInstance(TicTacToeGUI.class);
+		
 		tui.printTUI(); 	
 		 //continue until the user decides to quit
 		boolean continu = true;

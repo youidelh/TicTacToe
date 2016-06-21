@@ -5,26 +5,24 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 
-import de.htwg.tictactoe.controller.Controller;
+import com.google.inject.Inject;
+
+import de.htwg.tictactoe.controller.IController;
 import de.htwg.util.observer.IObserver;
 
-/**
- * 
- * @author Youssef Idelhoussain
- *
- */
 public class TextUI implements IObserver {
 
-	private Controller controller;
+	private IController controller;
 
     private static final Logger LOGGER = Logger.getLogger("de.htwg.tictactoe.view.tui");
 
-	public TextUI(Controller controller) {
+    @Inject
+	public TextUI(IController controller) {
 		this.controller = controller;
 		controller.addObserver(this);
 	}
-
-	@Override
+ 
+	//@Override
 	public void update() { 
 		printTUI();
 	}

@@ -1,6 +1,7 @@
 package de.htwg.tictactoe.view.gui;
 
-import de.htwg.tictactoe.controller.Controller;
+
+import de.htwg.tictactoe.controller.IController;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
@@ -16,11 +17,11 @@ public class GridPanel extends Group {
     final Rotate rx = new Rotate(0, Rotate.X_AXIS);
     final Rotate ry = new Rotate(0, Rotate.Y_AXIS);
     final Rotate rz = new Rotate(0, Rotate.Z_AXIS);
-    Controller controller;
+    IController controller;
     private Color color =  Color.rgb(237, 255, 250);
     final CellPanel[][] cells;
     		
-    public GridPanel(final Controller controller, double size, double shade, int id) {
+    public GridPanel(final IController controller, double size, double shade, int id) {
         getTransforms().addAll(rz, ry, rx);
         this.controller = controller;
         

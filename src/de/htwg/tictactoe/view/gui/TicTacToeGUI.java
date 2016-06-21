@@ -16,8 +16,8 @@ import javax.swing.JTextField;
 
 import com.google.inject.Inject;
 
-import de.htwg.tictactoe.controller.Controller;
-import de.htwg.tictactoe.model.Messages;
+import de.htwg.tictactoe.controller.IController;
+import de.htwg.tictactoe.model.impl.Messages;
 import javafx.application.Application;
 
 /**
@@ -37,12 +37,12 @@ public class TicTacToeGUI extends JFrame implements ActionListener{
 	JTextField player1; 
 	JTextField player2;
 	JLabel info;
-	Controller controller ;
+	IController controller ;
 	JLabel user1;
 	JLabel user2;
 	
 	@Inject 
-    public TicTacToeGUI(Controller controller) {
+    public TicTacToeGUI(IController controller) {
 		pane = getContentPane();
 		this.controller = controller;
         setTitle(Messages.TITLE); 
@@ -51,13 +51,13 @@ public class TicTacToeGUI extends JFrame implements ActionListener{
         setMinimumSize(new Dimension(DEFAULT_X, DEFAULT_Y)); 
         constructTicTacToePane(controller);
 	} 
-	private void constructTicTacToePane(Controller controller2) {
+	private void constructTicTacToePane(IController controller2) {
 		loginPanel = setLoginPanel(controller2);
 		pane.add(loginPanel, BorderLayout.CENTER);
 		setVisible(true); 
 	}
 	
-	public JPanel setLoginPanel(Controller controller2){
+	public JPanel setLoginPanel(IController controller2){
 		start  = new JButton("start");
 		player1 = new JTextField();
 		user1 = new JLabel("First Player");

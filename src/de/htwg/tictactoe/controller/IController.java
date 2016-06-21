@@ -1,9 +1,14 @@
 package de.htwg.tictactoe.controller;
 
+import de.htwg.tictactoe.model.IGame;
+import de.htwg.util.observer.IObservable;
+
 /**
  * Created by Daniel on 18.06.2016.
+ * 
+ * Modified by Youssef on 21.06.2016.
  */
-public interface IController {
+public interface IController extends IObservable{
 
     /**
      * Resets the game and notify all observers
@@ -56,4 +61,22 @@ public interface IController {
      * game state.
      */
     String getStatus();
+
+	/**
+	 * exit
+	 */
+	public void exit();
+
+	/**
+	 * return true if player[0] has won, false he lost.
+	 * @param i
+	 * @return boolean
+	 */
+	public boolean getWin(int i);
+	
+	/**
+	 * get a IGame object.
+	 * @return
+	 */
+	public IGame getGame();
 }

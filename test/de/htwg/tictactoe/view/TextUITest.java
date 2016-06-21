@@ -6,14 +6,9 @@ import static org.junit.Assert.assertFalse;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.tictactoe.controller.Controller;
-import de.htwg.tictactoe.model.Game;
+import de.htwg.tictactoe.controller.impl.Controller;
+import de.htwg.tictactoe.model.impl.Game;
 
-/**
- * 
- * @author Youssef Idelhoussain
- *
- */
 public class TextUITest {
 
     private Controller controller;
