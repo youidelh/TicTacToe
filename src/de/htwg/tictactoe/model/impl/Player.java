@@ -36,6 +36,7 @@ public class Player implements IPlayer{
 	 * @param grid
 	 * @return
 	 */
+	@Override
 	public boolean setSymbol(int row, int column, int grid){
 		if(grids[grid].setCell(row, column, symbol)){
 			return playerWon(row, column, grid);
@@ -62,6 +63,7 @@ public class Player implements IPlayer{
 		return oneGridStrategy.checkForWin(row, column, grid) || allGridStrategy.checkForWin(row, column, grid);
 	}
 	
+	@Override
 	public String getName() {
 		return name;
 	}

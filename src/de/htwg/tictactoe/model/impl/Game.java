@@ -26,10 +26,12 @@ public class Game implements IGame{
 	 * get all grids
 	 * @return
 	 */
+	@Override
 	public Grid[] getGrids(){
 		return grids;
 	}
 	
+	@Override
 	public Player getPlayer(int player){
 		if(player < 2){
 			return players[player];
@@ -38,6 +40,7 @@ public class Game implements IGame{
 		}
 	}
 	
+	@Override
 	public void setPlayer(int i, String player, String symbol, IGrid[] grid){
 		this.players[i] = new Player(player, symbol, grid);
 	}
@@ -48,6 +51,7 @@ public class Game implements IGame{
 	  * @param grid
 	  * @return
 	  */
+	@Override
 	public boolean cellIsSet(int row, int column, int grid){
 		return grids[grid].cellIsSet(row, column);
 	}
@@ -55,6 +59,7 @@ public class Game implements IGame{
 	/**
 	 * resets all Grids
 	 */
+	@Override
 	public void resetGame(){
 		for (int i = 0; i < grids.length; i++) {
 			grids[i].resetGrid();

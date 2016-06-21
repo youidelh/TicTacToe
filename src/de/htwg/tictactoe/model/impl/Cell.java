@@ -26,6 +26,7 @@ public class Cell implements ICell{
 	 * Get the Value of the Cell
 	 * @return the Value of the Cell.
 	 */
+	@Override
 	public String getValue(){
 		return value;
 	}
@@ -42,6 +43,7 @@ public class Cell implements ICell{
 	 * 	Check if Cell is set
 	 * @return true if the Cell has a value other then ""
 	 */
+	@Override
 	public boolean isSet() {
 		return !"".equals(value);
 	}

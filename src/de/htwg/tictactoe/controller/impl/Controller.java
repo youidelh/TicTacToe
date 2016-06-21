@@ -28,6 +28,7 @@ public class Controller extends Observable implements IController{
 		return myTurn;
 	}
 	
+	@Override
 	public boolean getWin(int i){
 		if(i == 1 || i == 0){
 			return won[i];
@@ -38,6 +39,7 @@ public class Controller extends Observable implements IController{
 		return game.getPlayer(player);
 	}
 	
+	@Override
 	public IGame getGame(){
 		return game;
 	}
@@ -53,6 +55,7 @@ public class Controller extends Observable implements IController{
 	/**
 	 * reset the game and notify all observers
 	 */
+	@Override
 	public void reset() {
 		if (game.getPlayer(0) != null && game.getPlayer(1) != null) {
 			game.resetGame();
@@ -71,6 +74,7 @@ public class Controller extends Observable implements IController{
 	 * exit
 	 * @return 
 	 */
+	@Override
 	public void exit() {
 		System.exit(0);
 	}
@@ -127,6 +131,7 @@ public class Controller extends Observable implements IController{
 	 * @param column
 	 * @param grid
 	 */
+	@Override
 	public void setValue(int row, int column, int grid){
 		if (game.getPlayer(0) == null || game.getPlayer(1) == null) {
 			setStatusMessage(Messages.ERROR_GIVE_PLAYERS_START);
@@ -150,6 +155,7 @@ public class Controller extends Observable implements IController{
 	 * @param player1
 	 * @param player2
 	 */
+	@Override
 	public void setPlayers(String player1, String player2) {
 		checkBeforeSetPlayer(player1, 0, "X");
 		checkBeforeSetPlayer(player2, 1, "O");
@@ -170,10 +176,11 @@ public class Controller extends Observable implements IController{
 	 * to string of Game
 	 * @return
 	 */
+	@Override
 	public String getGameString() {
 		return game.toString();
 	}
-
+	@Override
 	public String getStatus() {
 		return statusMessage;
 	}
