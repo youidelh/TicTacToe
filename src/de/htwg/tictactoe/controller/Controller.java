@@ -11,7 +11,7 @@ import de.htwg.util.observer.Observable;
  * @author Youssef Idelhoussain
  *
  */
-public class Controller extends Observable {
+public class Controller extends Observable implements IController{
 
 	private String statusMessage = Messages.WELCOME_MESSAGE;
 	private Game game;
